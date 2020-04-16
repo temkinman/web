@@ -1,0 +1,286 @@
+/*header start*/
+h1 {
+	color: blue;
+}
+
+div a, nav a {
+  text-decoration: none;
+}
+header {
+  display: flex;
+}
+
+header>div {
+
+  
+}
+/*header end*/
+
+.fio{
+    width: 65%;
+    margin-right: 2%;
+    text-align: center;
+    margin: auto;
+}
+
+/*logo start*/
+#triangle-right {
+	  z-index: 1;
+    margin-bottom: -16px;
+    position: absolute;
+    top: 0px;
+    left: 46px;
+    width: 0;
+    height: 0;
+    border-top: 70px solid transparent;
+    border-left: 180px solid #4aa666;
+    border-bottom: 70px solid transparent;
+	}
+
+#triangle-top {
+    z-index: 2;
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 0px;
+    left: 70px;
+    border-top: 70px solid gray;
+    border-left: 140px solid transparent;
+    border-bottom: 10px solid transparent;
+    transform: skew(30deg);
+}
+
+#triangle-bottom {
+	  z-index: 2;
+    left: 66px;
+    top: 71px;
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 70px solid transparent;
+    border-right: 139px solid #a6c0a6;
+    border-bottom: 0px solid transparent;
+    transform: skew(-30deg);
+}
+
+#triangle-left {
+	width: 0;
+    height: 0;
+    border-top: 70px solid transparent;
+    border-right: 45px solid #2b622b;
+    border-bottom: 70px solid transparent;
+}
+
+.logo {
+	position: relative;
+  margin-right: 19%;
+
+}
+
+#js {
+    z-index: 1;
+    position: absolute;
+    transform: rotate(31deg);
+    left: -56px;
+    top: -111px;
+    font-size: 42px;
+}
+
+#css {
+    z-index: 1;
+    position: absolute;
+    left: -153px;
+    top: -87px;
+    font-size: 42px;
+}
+
+#css:first-letter {
+	font-size: 62px;
+}
+
+#data{
+    z-index: 1;
+    position: absolute;
+    transform: rotate(-28deg);
+    left: 59px;
+    top: -90px;
+    font-size: 39px;
+}
+
+#krossword {
+    z-index: 1;
+    position: relative;
+    left: 32px;
+    top: -62px;
+    font-size: 17px;
+    width: 1ch;
+    text-align: center;
+    line-height: 0.6;
+    font: Consolas, Monaco, monospace;
+    word-wrap: break-word;
+}
+
+/*logo end*/
+
+header::after {
+  clear: both;
+}
+
+
+/*navigation start*/
+ .navigation {
+  list-style-type: none;
+  text-align: center;
+  margin: 0 auto;
+  padding: 20px 0;
+  position: relative;
+ }
+
+  .navigation ul {
+    padding-left: 0;
+    display: inline-block;
+    overflow: hidden;
+  }
+ .navigation li {
+    display: inline;
+    float: left;
+ }
+
+ .navigation a {
+    display: inline-block;
+    font-family: sans-serif;
+    color: gray;
+    font-size: 1.8em;
+    display: inline-block;
+    border-bottom: 2px solid darkgray;
+    padding: 10px 20px;
+ }
+
+ .active {
+  background-color: #e1e1e1;
+ }
+
+/*navigation end*/
+
+.news {
+  float: left;
+  width: 14%;
+  height: 100Vh;
+  background-color: darkgray;
+  margin-right: 15px;
+}
+
+.main-content {
+  float: left;
+  width: 60%;
+  background-color: darkgray;
+  margin-right: 15px;
+}
+
+/*formatting start*/
+.add_navigation {
+  float: left;
+  width: 23%;
+  background-color: darkgray;
+}
+
+.add_navigation li {
+  list-style-type: none;
+  padding: 10px 15px;
+}
+.add_navigation ul {
+    margin-left: 0; /* Отступ слева в браузере IE и Opera */
+    padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+}
+
+.add_navigation a {
+  font-family: sans-serif;
+  color: #344285;
+  font-size: 1.3em;
+}
+
+/*formatting end*/
+
+.main-content h2{
+  text-align: center;
+}
+
+.container div {
+  display: inline-block;
+}
+.container::after {
+  clear: both;
+}
+
+max-width: 1400px;
+    text-align: center;
+    /* position: relative; */
+    margin: 0 auto;
+
+/*footer start*/
+footer {
+  
+}
+footer section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: darkgray;
+  text-align: center;
+}
+/*footer end*/
+
+
+tbody {
+  font-size: 90%;
+  font-style: italic;
+}
+
+tfoot, caption {
+  font-weight: bold;
+}
+
+/*krossword start*/
+.nonogram_table td {
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, td, th, ul, ol, li, p, h1, form, img {
+    /*padding: 0;*/
+    /*margin: 0;*/
+    border: 0;
+}
+
+.nonogram_table td.num_empty {
+    background: #dadada;
+    border-color: #808080;
+    cursor: default;
+}
+
+.nonogram_table td table td {
+    width: 18px;
+    height: 17px;
+    text-align: center;
+    color: #000000;
+    cursor: pointer;
+    font-size: 0;
+    border: 1px solid #8F8F8F;
+    vertical-align: middle;
+}
+
+.nonogram_table td div {
+    /*width: 18px;*/
+    /*height: 17px;*/
+    text-align: center;
+    font-size: 11px;
+    line-height: 15px;
+    padding: 0px;
+    vertical-align: top;
+}
+/*krossword end*/
