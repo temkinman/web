@@ -152,6 +152,11 @@ header::after {
   padding: 10px 20px;
 }
 
+.navigation a:hover {
+  background-color: #424744c9;
+  color: white;
+}
+
 .active {
   background-color: #e1e1e1;
 }
@@ -168,8 +173,12 @@ header::after {
 .main-content {
   float: left;
   width: 60%;
-  background-color: darkgray;
+  background-color: #b9b8b8ab;
   margin-right: 15px;
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 1.625;
+  padding: 10px;
 }
 
 /*formatting start*/
@@ -184,8 +193,8 @@ header::after {
   padding: 10px 15px;
 }
 .add_navigation ul {
-    margin-left: 0; /* Отступ слева в браузере IE и Opera */
-    padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .add_navigation a {
@@ -194,12 +203,17 @@ header::after {
   font-size: 1.3em;
 }
 
+
+
 div[id^=div]{
   display: none;
+  padding: 15px;
+  min-height: 1px;
 }
 
 #div_1 {
   display: block;
+  padding: 15px;
 } 
 
 #a_1 {
@@ -214,20 +228,49 @@ tr:hover {
   background-color: #919698;
 }
 
-.d {
+/*.d {
   margin: 15px;
-}
+}*/
 
 .btn {
-  display: inline-block; /* Строчно-блочный элемент */
-  background: #8C959D; /* Серый цвет фона */
-  color: #fff; /* Белый цвет текста */
-  padding: 1rem 1.5rem; /* Поля вокруг текста */
-  text-decoration: none; /* Убираем подчёркивание */
-  border-radius: 3px; /* Скругляем уголки */
+  display: inline-block; 
+  background: #8C959D; 
+  color: #fff; 
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  border-radius: 3px;
   color: #344289;
   font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
  }
+
+ summary {
+    font-size: 1.5em;
+    border: 1px solid green;
+    border-radius: 4px;
+    max-width: 250px;
+    color: #47608e;
+    font-weight: bold;
+    margin: 0 auto;
+    padding: 15px;
+    box-shadow: 0 7px 15px rgba(0,0,0,0.5);
+ }
+ summary:hover {
+  color: white;
+  background-color: #a9ae41;
+ }
+
+ details p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 3em;
+  color: brown;
+ }
+  
+  #div_6 p, #div_6 li {
+    text-align: justify;
+  }
+ /*formatting end*/
 
 
 /*footer start*/
@@ -305,6 +348,63 @@ table {
   margin-left: 38px;
   margin-right: 38px;
 }
+
+.nb {
+  width: 50%;
+  height: 17vw;
+  border: 5px solid darkslategrey;
+  float: left;
+  background-color: gray;
+  margin-right: 15px;
+}
+
+.frame {
+  border-right: 6px solid #404440;
+  border-left: 6px solid #404440;
+}
+
+.poster {
+  /*padding: 15px;*/
+  color: #5c2b2b;
+}
+
+.ground {
+    color: #d0d0d0;
+    font-size: 150pt;
+    position: absolute;
+    width: 57%;
+    margin: 0;
+    z-index: -1;
+    text-align: center;
+}
+
+.left, .right {
+  min-height: 750px;
+  padding: 10px;
+  border: 2px solid #79795d;
+  width: 45%;
+}
+
+.left {
+  /*float: left;*/
+  margin-right: 20px;
+}
+
+.right {
+  /*float: right;*/
+
+  flex-basis: 300px;
+  flex-shrink: 0;
+}
+
+.columns {
+  /*display: flex;*/
+  height: 1px;
+}
+
+
+
+
 /*css_page end*/
 
 /*js_page start*/
@@ -330,7 +430,36 @@ table {
   text-overflow: ellipsis;
   padding: 10px;
 }
+
+
 /*js_page end*/
+
+/*footer start*/
+
+footer>section>ul {
+  padding: 0;
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 20px 0;
+  position: relative;
+  max-width: 600px;
+}
+
+section>ul>li:first-child {
+  float: left;
+}
+
+section>ul>li {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+section>ul>li>span:first-child {
+  margin-right: 10px;
+}
+
+
+/*footer end*/
 
 @media screen and (device-width: 1440px) {
   #animate {
@@ -356,3 +485,44 @@ table {
   }
 }
 
+@media  (min-width: 1400px) and (max-width: 1500px){
+  .ground {
+    font-size: 140pt;
+  }
+}
+
+@media  (min-width: 1000px) and (max-width: 1399px){
+  .ground {
+    font-size: 120pt;
+  }
+}
+
+@media  (min-width: 850px) and (max-width: 999px){
+  .ground {
+    font-size: 100pt;
+  }
+}
+
+@media  (min-width: 650px) and (max-width: 849px){
+  .ground {
+    font-size: 80pt;
+  }
+}
+
+@media  (min-width: 520px) and (max-width: 649px){
+  .ground {
+    font-size: 70pt;
+  }
+}
+
+@media  (min-width: 450px) and (max-width: 519px){
+  .ground {
+    font-size: 60pt;
+  }
+}
+
+@media (max-width: 519px){
+  .ground {
+    font-size: 50pt;
+  }
+}
