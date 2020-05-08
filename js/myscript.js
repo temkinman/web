@@ -1,10 +1,10 @@
 /*for JS_page start*/
-
 var id = null;
 var elem = document.getElementById("animate");   
 var posX = 0;
 var posY = 0;
 var n = 0;
+let jsText = document.getElementsByClassName('active')[0].innerText;
 
 function moveDown(){
   posY++; 
@@ -25,11 +25,27 @@ function moveDiagonal(){
   elem.style.top = posY + '%';
 }
 
+function moveRight(){
+  posX++;
+  elem.style.left = posX + '%';
+}
+
+function moveLeft(){
+  posX--;
+  elem.style.left = posX + '%';
+}
+
+function moveTop(){
+  posY--; 
+  elem.style.top = posY + '%';
+}
+
 function startMoveText() {
   setStartPosition();
   id = setInterval(frame, 30);
-  
-  function frame() {
+}
+
+function frame() {
     if(n === 0 && posY < 93){
         moveDown();
         if(posY > 91) {
@@ -55,11 +71,40 @@ function startMoveText() {
       }
     }
   }
-}
 
 function stopMoveText(){
   clearInterval(id);
 }
+
+
+document.addEventListener('keydown', function(event) {
+  // debugger
+  //KeyboardEvent.charCode;
+
+  let n = 0;
+  if (event.keyCode == '83' && jsText == 'JS') {
+    if(posY < 93){
+      moveDown();
+    }
+  }
+  if (event.keyCode == '68' && jsText == 'JS') {
+    if(posX < 77){
+      moveRight();
+    }
+  }
+
+  if (event.keyCode == '87' && jsText == 'JS') {
+    if(posY > -3){
+      moveTop();
+    }
+  }
+
+  if (event.keyCode == '65' && jsText == 'JS') {
+    if(posX > 0){
+      moveLeft();
+    }
+  }
+});
 
 /*for JS_page end*/
 
@@ -89,7 +134,6 @@ function show(id){
     }
     else {
       mydiv.style.display = "none";
-      // columns = 0;
     }
     if (columns == 1 && numDivId === numLinkId){
       mydiv.style.display = "flex";
