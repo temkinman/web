@@ -24,13 +24,188 @@
 		<p>NEWS-NEWS-NEWS</p>	
 	</div>	
 	<div class="main-content">
-		<div>form content</div>
+		<div id="div_1" class="d">
+			<h3>КОМПЛЕКТУЮЩИЕ</h3>
+			<form method="POST">
+				<div>
+					<p>
+		    			<label>Название</label>
+		    			<input type="text" name=""
+		    					class="inputuser"
+		    					autofocus>
+		    		</p>
+		    		<p>
+		    			<label for="car-producer">Производитель</label>
+						<input list="producer"
+								id="car-producer"
+								name="ice-cream-choice"
+								class="inputuser" />
+
+						<datalist id="producer">
+						    <option value="Audi">
+						    <option value="BMW">
+						    <option value="Mercedes">
+						    <option value="Volkswagen">
+						    <option value="Porshe">
+						</datalist>
+		    		</p>
+		    		<p>
+		    			<label>Сайт производителя</label>
+		    			<input type="url"
+		    					name="url"
+								placeholder="https://example.com"
+								pattern="https://.*" size="30"
+								class="inputuser">
+		    		</p>
+		    		<p>
+		    			<label>Дата изготовления</label>
+						<input type="date" name=""
+						       value=""
+						       min="2018-01-01" max="2020-05-12"
+						       class="inputuser date">
+		    		</p>	
+		    		<p>
+		    			<label>Гарантийный срок</label>
+						<input type="text" name="" class="inputuser">
+		    		</p>
+					<p>
+		    			<label>Цена</label>
+		    			<input type="number"
+		    					size="3"
+		    					name="num"
+		    					value="0" 
+		    					min="1" max="100000"
+		    					step="1"
+		    					class="inputuser">
+					</p>	
+				</div>
+				<div class="btn_div">
+					<input type="sumbit"
+							name=""
+							value="отправить"
+							class="send"
+							readonly>	
+				</div>
+			</form>	
+		</div>
+		
+		<div id="div_2" class="d">
+			<h3>ПРОДАЖА</h3>
+			<form method="POST">
+				<div>
+					<p>
+	    				<label>Дата продажи</label>
+	    				<input type="date" name="trip-start"
+						       value=""
+						       min="2020-05-12" max="2021-05-12"
+						       class="inputuser date">
+	    			</p>
+	    			<p>
+	    				<label>Количество</label>
+	    				<input type="text"
+	    						name=""
+	    						class="inputuser">
+	    			</p>
+	    			<p>
+	    				<label>Процент фирмы</label>
+	    				
+	    				<input type="text"
+	    						id="total_percent"
+	    						name=""
+	    						value="0" 
+	    						class="inputuser">
+	    						<span class="percent">%</span>
+						
+     					
+	    			</p>
+	    			<p id="for_percent">
+	    				<input type="range" min="1" max="30" id="percent" 
+     							oninput="change_percent()" value="0">	
+	    			</p>
+	    			
+				</div>
+				<div class="btn_div">
+					<input type="sumbit"
+							name=""
+							value="отправить"
+							class="send"
+							readonly>	
+				</div>
+			</form>	
+		</div>
+		<div id="div_3" class="d">
+			<h3>ПОКУПАТЕЛИ</h3>
+			<form method="POST">
+				<div>
+					<p>
+		    			<label>ФИО покупателя</label><em>*</em>
+		    			<input type="text"
+		    				   name=""
+		    				   class="inputuser"
+		    				   placeholder="Ф.И.О."
+		    				   title="введите ФИО"
+		    				   autofocus >
+	    			</p>
+		    		<p>
+		    			<label>Адрес</label>
+		    			<input type="text"
+		    					name=""
+		    					class="inputuser"
+		    					autocomplete="off">
+		    		</p>
+		    		<p>
+		    			<label>e-mail</label><em>*</em>
+		    			<input type="email"
+	       						pattern=".+@example.com" size="60"
+	       						placeholder="username@example.com"
+	       						title="введите электронную почту"
+	       						autocomplete="off" 
+	       						required
+	       						class="inputuser">
+		    		</p>
+		    		<p>
+		    			<label>телефон</label><em>*</em>
+		    			<span class="validity"></span>
+
+		    			<input type="tel"
+		    					pattern="+[0-9]{3}-[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
+	       						placeholder="+375-xx-xxx-xx-xx"
+	       						title="введите телефон"
+	       						autocomplete="off" 
+	       						required
+	       						class="inputuser xx">
+						<!-- <span class="validity"></span> -->
+						
+		    		</p>
+		    		<p>
+		    			<label>Количество</label><em>*</em>
+		    			<input type="text" name="" class="inputuser">
+		    		</p>	
+		    		<p>
+		    			<label>Дата продажи</label><em>*</em>
+						<input type="date" name="trip-start"
+						       value=""
+						       min="2020-05-12" max="2021-05-12"
+						       class="inputuser date">
+		    		</p>
+				</div>
+				<div class="btn_div">
+					<input type="sumbit" name="" value="отправить" class="send" readonly>	
+				</div>
+			</form>
+		</div>
+		
 	</div>
 	<div class="add_navigation">
-		<p>дополнительная навигация</p>
+		<ul>
+			<li><a href="#" class="a" onclick="show(id)" id='a_1'>Комплектующие</a></li>
+			<li><a href="#" class="a" onclick="show(id)" id='a_2'>Продажа</a></li>
+			<li><a href="#" class="a" onclick="show(id)" id='a_3'>Покупатели</a></li>
+		</ul>
 	</div>
 </div>
 
 <iframe src="footer.html" width=100% height="145" frameborder='no' scrolling='no'></iframe>
+<script type="text/javascript" src="./js/myscript.js"></script>
 </body>
 </html>

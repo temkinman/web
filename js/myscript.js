@@ -192,7 +192,50 @@ function show(id){
   }
 /*for CSS_page end*/
 
+/*js_page start*/
+function tableCreate() {
+  // debugger
+  var main = document.getElementsByClassName('main-content')[0];
+  var tbl = document.createElement('table');
+  tbl.classList.add("nonogram_table");
+  var tbdy = document.createElement('tbody');
+  var n = 0;
+  for (var i = 0; i < 2; i++) {
+    var tr = document.createElement('tr');
+    for (var j = 0; j < 2; j++) {
+      var td = document.createElement('td');
+      if (n == 0) {
+        td.classList.add('tbl_1');
+        td.innerText = ' ';
+        n++;
+      }
+      td.appendChild(document.createTextNode('\u0020'))
+      tr.appendChild(td)
+    }
+    tbdy.appendChild(tr);
+  }
+  tbl.appendChild(tbdy);
+  main.appendChild(tbl);
+
+  function createtableAdd() {
+     tbl.appendChild 
+  }
+}
+/*js_page end*/
+
+/*form_page start*/
+
+function change_percent(){
+  var total_percent = document.getElementById('total_percent');
+  var percent = document.getElementById('percent');
+  
+  total_percent.value = percent.value;
+}
+
+/*form_page stop*/
+
 /*for liveReload*/
   //document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
   document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
 /*end*/
+

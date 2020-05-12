@@ -311,6 +311,9 @@ tfoot, caption {
 }
 
 /*krossword start*/
+.tbl_1{
+  background-color: #f0f0f0;
+}
 .nonogram_table td {
   border: 1px solid black;
   cursor: pointer;
@@ -864,6 +867,139 @@ section>ul>li>span:first-child {
 
 
 /*footer end*/
+
+/*form start*/
+form {
+  border: 2px solid #2862cb;
+  border-radius: 6px;
+  padding: 5px 10px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+hr {
+  margin-top: 30px;
+}
+
+.inputuser {
+  border: 1px solid #4d4de9;
+  border-radius: 3px;
+  padding: 5px 10px;
+  float: right;
+  width: 60%;
+  font-size: 1em;
+  color: #795548;
+  text-align: right;
+}
+
+.inputuser:focus {
+  border: 2px solid #555;
+}
+
+.btn_div, .btn_div>input {
+  text-align: center;
+}
+
+.send {
+  width: 40%;
+  border: 1px solid #4d4de9;
+  border-radius: 3px;
+  padding: 5px 10px;
+  width: 60%;
+  font-size: 1.4em;
+  margin: 20px 0px;
+  background-color: #36a236f7;
+  color: white;  
+}
+
+.send:hover {
+  background-color: #047004f7;
+  cursor: pointer;
+}
+
+.send:active {
+  background-color: #024b02;
+  cursor: pointer;
+}
+
+.xx:invalid+span:after {
+  position: absolute;
+  content: '✖';
+  padding-left: 5px;
+  color: #8b0000;
+}
+
+.xx:valid+span:after {
+  position: absolute;
+  content: '✓';
+  padding-left: 5px;
+  color: #009000;
+}
+
+form>div>p {
+  position: relative;
+}
+
+form>div>p>label {
+  line-height: 30px;
+}
+
+.date {
+  padding: 2px 10px;
+}
+
+#total_percent {
+  width: 20px;
+}
+
+#percent {
+    float: right;
+    -webkit-appearance: none;
+    width: 30%;
+    height: 8px;
+    border-radius: 7px;
+    background: #483b3b;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    transform: translate(0, -50%);
+}
+
+#percent::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; 
+    background: gray;
+    cursor: pointer;
+}
+
+#percent::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: gray;
+  cursor: pointer;
+}
+
+#percent:after {
+  clear: both;
+}
+
+#for_percent {
+  height: 1px;
+}
+
+.percent {
+  float: right;
+  margin-right: 4px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/*form end*/
 
 @media (max-width: 300px) {
   .news, .add_navigation {
