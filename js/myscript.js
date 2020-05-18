@@ -1,9 +1,9 @@
 /*for JS_page start*/
-var id = null;
-var elem = document.getElementById("animate");   
-var posX = 0;
-var posY = 0;
-var n = 0;
+let id = null;
+let elem = document.getElementById("animate");   
+let posX = 0;
+let posY = 0;
+let n = 0;
 let jsText = document.getElementsByClassName('active')[0].innerText;
 
 function moveDown(){
@@ -111,10 +111,10 @@ document.addEventListener('keydown', function(event) {
 /*for formatting_page start*/
 function show(id){
 
-  var alldiv = document.getElementsByClassName('d');
-  var numLinkId = id.replace(/\D+/g,"");
-  var arrLinks = document.getElementsByClassName('a');
-  var columns = 0;
+  let alldiv = document.getElementsByClassName('d');
+  let numLinkId = id.replace(/\D+/g,"");
+  let arrLinks = document.getElementsByClassName('a');
+  let columns = 0;
 
   if(document.getElementById(id).text == 'Двухколонный') {
     columns = 1;
@@ -126,8 +126,8 @@ function show(id){
   document.getElementById(id).style.fontWeight = 'bold';
 
   for(let i=0;i < alldiv.length;i++){
-    var numDivId = alldiv[i].id.replace(/\D+/g,"");
-    var mydiv = document.getElementById('div_' + numDivId);
+    let numDivId = alldiv[i].id.replace(/\D+/g,"");
+    let mydiv = document.getElementById('div_' + numDivId);
 
     if (numDivId === numLinkId){
       mydiv.style.display = "block";
@@ -148,7 +148,7 @@ function show(id){
 
   function select(id) {
     switch (id) {
-      case '1': var x = document.getElementById('parentLi');
+      case '1': let x = document.getElementById('parentLi');
       // debugger
               // document.getElementsByClassName('psevdo').ul>li:first-child.style.background-color = '#3dab00';
               break;
@@ -195,15 +195,15 @@ function show(id){
 /*js_page start*/
 function tableCreate() {
   // debugger
-  var main = document.getElementsByClassName('main-content')[0];
-  var tbl = document.createElement('table');
+  let main = document.getElementsByClassName('main-content')[0];
+  let tbl = document.createElement('table');
   tbl.classList.add("nonogram_table");
-  var tbdy = document.createElement('tbody');
-  var n = 0;
+  let tbdy = document.createElement('tbody');
+  let n = 0;
   for (var i = 0; i < 2; i++) {
-    var tr = document.createElement('tr');
+    let tr = document.createElement('tr');
     for (var j = 0; j < 2; j++) {
-      var td = document.createElement('td');
+      let td = document.createElement('td');
       if (n == 0) {
         td.classList.add('tbl_1');
         td.innerText = ' ';
@@ -226,10 +226,47 @@ function tableCreate() {
 /*form_page start*/
 
 function change_percent(){
-  var total_percent = document.getElementById('total_percent');
-  var percent = document.getElementById('percent');
+  let total_percent = document.getElementById('total_percent');
+  let percent = document.getElementById('percent');
   
   total_percent.value = percent.value;
+}
+
+function send(event){
+  event.preventDefault();
+
+  
+  let form_1 = document.getElementById('form_1');
+
+  var benchTable;
+
+  
+    // очистить всё
+    //benchTable = document.getElementById('bench-table');
+    // while (benchTable.firstChild) {
+    //   benchTable.removeChild(benchTable.firstChild);
+    // }
+  
+
+  
+    var tbody = document.createElement('tbody');
+    var th = document.createElement('th');
+
+    tr_1 = document.createElement('tr');
+    th.innerText='1111';
+    tr_1.appendChild(th);
+    for (var i = 0; i < 2; i++) {
+      // var tr = document.createElement('TR');
+      // tbody.appendChild(tr);
+      // for (var j = 0; j < 20; j++) {
+      //   var td = document.createElement('td');
+      //   tr.appendChild(td);
+      //   td.appendChild(document.createTextNode('' + i.toString(20) + j.toString(20)));
+      // }
+    }
+
+    form_1.appendChild(tbody);
+  
 }
 
 /*form_page stop*/

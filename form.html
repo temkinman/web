@@ -26,21 +26,20 @@
 	<div class="main-content">
 		<div id="div_1" class="d">
 			<h3>КОМПЛЕКТУЮЩИЕ</h3>
-			<form method="POST">
+			<form method="POST" id="form_1" action="">
 				<div>
 					<p>
 		    			<label>Название</label>
-		    			<input type="text" name=""
-		    					class="inputuser"
-		    					autofocus>
+	    				<input type="text" name=""
+	    					class="inputuser"
+	    					autofocus>
 		    		</p>
 		    		<p>
 		    			<label for="car-producer">Производитель</label>
-						<input list="producer"
-								id="car-producer"
-								name="ice-cream-choice"
-								class="inputuser" />
-
+	    				<input list="producer"
+							id="car-producer"
+							name="ice-cream-choice"
+							class="inputuser" />
 						<datalist id="producer">
 						    <option value="Audi">
 						    <option value="BMW">
@@ -51,156 +50,169 @@
 		    		</p>
 		    		<p>
 		    			<label>Сайт производителя</label>
-		    			<input type="url"
-		    					name="url"
-								placeholder="https://example.com"
-								pattern="https://.*" size="30"
-								class="inputuser">
+	    				<input type="url"
+	    					name="url"
+							placeholder="https://example.com"
+							pattern="https://.*" size="30"
+							class="inputuser">
 		    		</p>
 		    		<p>
 		    			<label>Дата изготовления</label>
-						<input type="date" name=""
-						       value=""
-						       min="2018-01-01" max="2020-05-12"
-						       class="inputuser date">
+	    				<input type="date" name=""
+					       value=""
+					       min="2018-01-01" max="2020-05-12"
+					       class="inputuser date">
 		    		</p>	
 		    		<p>
 		    			<label>Гарантийный срок</label>
-						<input type="text" name="" class="inputuser">
+	    				<input type="text" name="" class="inputuser">
 		    		</p>
 					<p>
 		    			<label>Цена</label>
-		    			<input type="number"
-		    					size="3"
-		    					name="num"
-		    					value="0" 
-		    					min="1" max="100000"
-		    					step="1"
-		    					class="inputuser">
-					</p>	
-				</div>
-				<div class="btn_div">
-					<input type="sumbit"
-							name=""
-							value="отправить"
-							class="send"
-							readonly>	
+	    				<input type="number"
+	    					size="3"
+	    					name="num"
+	    					value="0" 
+	    					min="1" max="100000"
+	    					step="1"
+	    					class="inputuser">
+					</p>
+					<p class="btn_block">
+		    			<input type="submit" value="отправить" class="send" onclick="send(event)">
+		    		</p>	
 				</div>
 			</form>	
 		</div>
-		
 		<div id="div_2" class="d">
 			<h3>ПРОДАЖА</h3>
 			<form method="POST">
 				<div>
 					<p>
 	    				<label>Дата продажи</label>
-	    				<input type="date" name="trip-start"
-						       value=""
-						       min="2020-05-12" max="2021-05-12"
-						       class="inputuser date">
+		    				<input type="date" name="trip-start"
+	    							class="inputuser date"
+							       value=""
+							       min="2020-05-12" max="2021-05-12">
 	    			</p>
 	    			<p>
 	    				<label>Количество</label>
-	    				<input type="text"
+	    					<input type="text"
 	    						name=""
 	    						class="inputuser">
 	    			</p>
 	    			<p>
 	    				<label>Процент фирмы</label>
-	    				
-	    				<input type="text"
+	    				<!-- <p class="userField inline"> -->
+	    					<span class="percent">%</span>
+	    					<input type="text"
 	    						id="total_percent"
 	    						name=""
 	    						value="0" 
 	    						class="inputuser">
-	    						<span class="percent">%</span>
-						
-     					
+	    							
+	    				<!-- </p> -->
 	    			</p>
 	    			<p id="for_percent">
-	    				<input type="range" min="1" max="30" id="percent" 
-     							oninput="change_percent()" value="0">	
+    					<input type="range" min="1" max="30" id="percent" 
+ 							oninput="change_percent()" value="0">	
 	    			</p>
-	    			
-				</div>
-				<div class="btn_div">
-					<input type="sumbit"
-							name=""
-							value="отправить"
-							class="send"
-							readonly>	
+	    			<p class="btn_block">
+		    			<input type="submit" value="отправить" class="send" onclick="send(event)">
+		    		</p>
 				</div>
 			</form>	
 		</div>
 		<div id="div_3" class="d">
 			<h3>ПОКУПАТЕЛИ</h3>
-			<form method="POST">
+			<form action="" id="form_3">
 				<div>
 					<p>
 		    			<label>ФИО покупателя</label><em>*</em>
-		    			<input type="text"
-		    				   name=""
-		    				   class="inputuser"
-		    				   placeholder="Ф.И.О."
-		    				   title="введите ФИО"
-		    				   autofocus >
+	    				<input type="text"
+	    				   name=""
+	    				   class="input_client"
+	    				   placeholder="Ф.И.О."
+	    				   title="введите ФИО"
+	    				   required
+	    				   autofocus >
+				    	<span></span>	
 	    			</p>
-		    		<p>
+		    		<p class="mt-5">
 		    			<label>Адрес</label>
-		    			<input type="text"
-		    					name=""
-		    					class="inputuser"
-		    					autocomplete="off">
-		    		</p>
-		    		<p>
+	    				<input type="text"
+	    					name=""
+	    					pattern="[A-zА-я0-9-!_*/.,]+" 
+	    					class="input_client"
+	    					autocomplete="off"
+	    					required>
+		    		<p class="mt-5">
 		    			<label>e-mail</label><em>*</em>
-		    			<input type="email"
-	       						pattern=".+@example.com" size="60"
+		    			<!-- <p class="userField"> -->
+		    				<input type="email"
+	       						pattern="^[A-z0-9.!_-]+@[A-z0-9-]+.[A-z]{2,3}$"
+	       						size="60"
 	       						placeholder="username@example.com"
 	       						title="введите электронную почту"
 	       						autocomplete="off" 
 	       						required
-	       						class="inputuser">
+	       						class="input_client">
+       						<span></span>
+		    			<!-- </p> -->
 		    		</p>
-		    		<p>
+		    		<p class="mt-5">
 		    			<label>телефон</label><em>*</em>
-		    			<span class="validity"></span>
-
-		    			<input type="tel"
-		    					pattern="+[0-9]{3}-[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
+		    			<!-- <p class="userField"> -->
+		    				<input type="tel"
+		    					pattern="^\+[0-9]{1,3}-?[0-9]{2}-?[0-9]{3}-?[0-9]{2}-?[0-9]{2}"
 	       						placeholder="+375-xx-xxx-xx-xx"
 	       						title="введите телефон"
 	       						autocomplete="off" 
 	       						required
-	       						class="inputuser xx">
-						<!-- <span class="validity"></span> -->
-						
+	       						class="input_client">
+       						<span></span>
+		    			<!-- </p> -->
 		    		</p>
-		    		<p>
+		    		<p class="mt-5">
 		    			<label>Количество</label><em>*</em>
-		    			<input type="text" name="" class="inputuser">
+		    			<!-- <p class="userField"> -->
+		    				<input type="text"
+		    					pattern="[0-9]+"
+		    					name=""
+		    					class="input_client"
+		    					required>
+    						<span></span>
+		    			<!-- </p> -->
 		    		</p>	
-		    		<p>
+		    		<p class="mt-5">
 		    			<label>Дата продажи</label><em>*</em>
-						<input type="date" name="trip-start"
+		    			<!-- <p class="userField"> -->
+		    				<input type="date" name="trip-start"
 						       value=""
 						       min="2020-05-12" max="2021-05-12"
-						       class="inputuser date">
+						       class="input_client date"
+						       required>
+				       		<span></span>
+		    			<!-- </p> -->
 		    		</p>
-				</div>
-				<div class="btn_div">
-					<input type="sumbit" name="" value="отправить" class="send" readonly>	
+		    		<p class="btn_block">
+		    			<input type="submit" value="отправить" class="send" onclick="send(event)">
+		    		</p>
 				</div>
 			</form>
 		</div>
-		
+		<div id="div_4" class="d">
+			<form class="search">
+		   		<input type="search" name="q" placeholder="Поиск по сайту" class="searchInput">
+		   		<input type="submit" value="Найти" class="find" onclick="send(event)">
+		  	</form>
+		</div>
 	</div>
 	<div class="add_navigation">
 		<ul>
 			<li><a href="#" class="a" onclick="show(id)" id='a_1'>Комплектующие</a></li>
 			<li><a href="#" class="a" onclick="show(id)" id='a_2'>Продажа</a></li>
 			<li><a href="#" class="a" onclick="show(id)" id='a_3'>Покупатели</a></li>
+			<li><a href="#" class="a" onclick="show(id)" id='a_4'>Поиск</a></li>
 		</ul>
 	</div>
 </div>
