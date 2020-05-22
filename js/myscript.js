@@ -192,36 +192,81 @@ function show(id){
   }
 /*for CSS_page end*/
 
-/*js_page start*/
+/*date_page start*/
 function tableCreate() {
-  // debugger
   let main = document.getElementsByClassName('main-content')[0];
   let tbl = document.createElement('table');
   tbl.classList.add("nonogram_table");
   let tbdy = document.createElement('tbody');
-  let n = 0;
-  for (var i = 0; i < 2; i++) {
+  let tr = document.createElement('tr');
+
+  for(var i=0; i<2; i++) {
+    let td = document.createElement('td');
+    if (i == 0) {
+      td.innerText = '\u00A0';
+      td.id = 'nmti';
+    }
+    else {
+      createtableAdd(td);
+    }
+    td.appendChild(document.createTextNode('\u0020'));
+    tr.appendChild(td);
+    tbdy.appendChild(tr);
+  }
+
+  tbl.appendChild(tbdy);
+  main.appendChild(tbl);
+}
+
+function createtableAdd(td) {
+  let tbdy = document.createElement('tbody');
+  let tbl = document.createElement('table');
+  
+  let numbersY = [[3, 2, 6], [3, 3, 5, 4, 4, 5, 2], [6, 1, 4, 2, 3, 3, 2, 7, 5, 1, 2, 7, 1, 2, 2]];
+  
+  for(var i=0; i<6; i++){
     let tr = document.createElement('tr');
-    for (var j = 0; j < 2; j++) {
+    let a=0;
+    let b=0;
+    for(var j=0;j<35;j++){
+      let div = document.createElement('div');
       let td = document.createElement('td');
-      if (n == 0) {
-        td.classList.add('tbl_1');
-        td.innerText = ' ';
-        n++;
+      
+      if( i == 0 && (j == 7 || j == 8 || j == 10)) {
+        div.innerText = numbersY[a][b];
+        b++;
+        div.id='nmv_' + i + '_' + j;
+        div.classList.add('num');  
       }
-      td.appendChild(document.createTextNode('\u0020'))
-      tr.appendChild(td)
+      else if ( i == 1 && (j == 3 || j == 7 || j == 8 || j == 10 || j == 13 || j == 14 || j == 28) ) {
+        a=1;
+        div.innerText = numbersY[a][b];
+        div.id='nmv_' + i + '_' + j;
+        div.classList.add('num'); 
+        b++;
+      }
+      else if ( i == 2 && (j == 1 || j == 3 || j == 4 || j == 7 || j == 8 || j == 9 || j == 10 || j == 11 || j == 12 || j == 13 || j == 14 || j == 15 || j == 17 || j == 26 || j == 28) ) {
+        a=2;
+        div.innerText = numbersY[a][b];
+        div.id='nmv_' + i + '_' + j;
+        div.classList.add('num'); 
+        b++;
+      }
+
+      else {
+        div.innerText = '\u00A0'; 
+        div.classList.add('num_empty'); 
+      }
+      
+      td.appendChild(div);
+      tr.appendChild(td);
     }
     tbdy.appendChild(tr);
   }
   tbl.appendChild(tbdy);
-  main.appendChild(tbl);
-
-  function createtableAdd() {
-     tbl.appendChild 
-  }
+  td.appendChild(tbl);
 }
-/*js_page end*/
+/*date_page end*/
 
 /*form_page start*/
 

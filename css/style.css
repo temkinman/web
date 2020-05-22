@@ -311,8 +311,10 @@ tfoot, caption {
 }
 
 /*krossword start*/
-.tbl_1{
-  background-color: #f0f0f0;
+
+#nmti {
+  background:#f0f0f0;
+  cursor:default;
 }
 .nonogram_table td {
   border: 1px solid black;
@@ -405,6 +407,10 @@ table {
   border-radius: 5px; 
 }
 
+.left ol, .right ol, .left ul {
+  padding-left: 6%;
+}
+
 .left {
   margin-right: 10px;
   /*float: left;*/
@@ -418,7 +424,7 @@ table {
 
 .scroll {
   overflow: scroll;
-  width: 80%;
+  width: 90%;
   height: 510px;
   padding: 10px;
   border: solid 3px #6085ac;
@@ -818,7 +824,7 @@ input[id^="task"] {
 #container {
   display: block;
   width: 50vw;
-  height: 50vw;
+  /*height: 50vw;*/
   background: #f0eff2;
   margin: 0 auto;
   position: relative;
@@ -838,6 +844,9 @@ input[id^="task"] {
   padding: 10px;
 }
 
+.btn_div{
+  text-align: center;
+}
 
 /*js_page end*/
 
@@ -1038,7 +1047,7 @@ form>div>p>label {
   display: flex;
   justify-content: center;
   border: unset;
-  width: 80%;
+  width: 95%;
 }
 
 
@@ -1117,7 +1126,7 @@ form>div>p>label {
   }
 }
 
-@media  (min-width: 600px) and (max-width: 768px){
+@media  (min-width: 350px) and (max-width: 768px){
   #animate {
     font-size: 1.5em;
   }
@@ -1129,15 +1138,79 @@ form>div>p>label {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 380px) {
+  #total_percent {
+    float: none !important;
+  }
+}
+
+@media (max-width: 415px) {
   .send {
     font-size: 1em !important;
+  }
+
+  .percent {
+    display: none;
   }
 }
 
 @media (max-width: 500px) {
   .send {
     font-size: 1.2em;
+  }
+}
+
+@media (max-width: 620px) {
+  .search {
+    display: block;
+    text-align: center;
+  }
+  .searchInput {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 560px) {
+  .table {
+    font-size: 12px !important;
+    padding: 2px !important; 
+  }
+
+  table>thead>tr>th {
+    padding: 0px;
+  }
+
+  table>tbody>tr>td {
+    padding: 3px; 
+  }
+}
+
+@media (max-width: 650px) {
+  .table {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 770px) {
+  .send {
+    width: 80% !important;
+  }
+
+  .input_client {
+    font-size: 0.8em !important;
+  }
+
+  .columns {
+    display: block !important;
+  }
+  .right, .left {
+    width: 95% !important;
+    /*float: left;*/
+  }
+
+  .left {
+    margin-bottom: 10px;
   }
 }
 
@@ -1151,10 +1224,21 @@ form>div>p>label {
   }
 }
 
+@media (max-width: 375px) {
+  .tasks label {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 750px) {
+  .tasks label {
+    min-width: unset;
+  }
+}
 
 @media (min-width: 350px) and (max-width: 370px) {
   .input_client {
-    width: 72%;
+    width: 70%;
   }
 }
 
