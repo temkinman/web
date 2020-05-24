@@ -239,7 +239,7 @@ tr>td:last-child{
   text-align: center;
 }
 
-tr:hover {
+.rashod tr:hover {
   background-color: #919698;
 }
 
@@ -340,6 +340,7 @@ table {
     font-size: 0;
     border: 1px solid #8F8F8F;
     vertical-align: middle;
+    padding: 0;
 }
 
 .nonogram_table td div {
@@ -350,6 +351,18 @@ table {
     line-height: 15px;
     padding: 0px;
     vertical-align: top;
+}
+
+.pic {
+  background-color: white;
+}
+
+.game_pic tr>td:nth-child(5n) {
+  border-right: 1px solid;
+}
+
+.game_pic tr:nth-child(5n)>td {
+  border-bottom: 1px solid;
 }
 /*krossword end*/
 
