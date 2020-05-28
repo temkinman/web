@@ -337,7 +337,7 @@ table {
     text-align: center;
     color: #000000;
     cursor: pointer;
-    font-size: 0;
+    font-size: 11px;
     border: 1px solid #8F8F8F;
     vertical-align: middle;
     padding: 0;
@@ -357,11 +357,11 @@ table {
   background-color: white;
 }
 
-.game_pic tr>td:nth-child(5n) {
+.game_pic tr>td:nth-child(5n), #topTable tbody tr td:nth-child(5n) {
   border-right: 1px solid;
 }
 
-.game_pic tr:nth-child(5n)>td {
+.game_pic tr:nth-child(5n)>td, #leftTable tbody tr:nth-child(5n) td {
   border-bottom: 1px solid;
 }
 /*krossword end*/

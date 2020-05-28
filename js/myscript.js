@@ -76,7 +76,6 @@ function stopMoveText(){
   clearInterval(id);
 }
 
-
 document.addEventListener('keydown', function(event) {
   // debugger
   //KeyboardEvent.charCode;
@@ -193,6 +192,38 @@ function show(id){
 /*for CSS_page end*/
 
 /*date_page start*/
+let numbersX = [
+                  [6], [9], [5, 4], [5, 5], [15], [2, 11], [1, 4, 1, 4], [2, 2, 3, 3], [2, 5,2],
+                  [2, 2, 2, 18], [1, 1, 1, 2, 9], [2, 2, 5], [1, 2, 1, 5], [4, 1, 2, 1, 1, 2],
+                  [2, 4, 1, 2, 1, 2], [2, 4, 1, 1, 1, 1], [3, 2, 1, 1, 1, 1, 1], [3, 2, 1, 1, 2, 1, 1],
+                  [2, 2, 1, 2, 2, 1, 1], [1, 2, 2, 2, 1, 1, 3], [1, 1, 2, 2, 3, 1, 1, 1, 1, 2],
+                  [1, 1, 1, 1, 1, 1, 1, 1, 3, 2], [2, 1, 1, 2, 1, 2, 2, 1, 2, 3], [1, 1, 2, 1, 2, 1, 13, 1, 2],
+                  [1, 1, 15, 4, 7], [2, 5, 3, 1, 1, 5], [5, 1, 1, 4, 1, 2], [4, 5, 3, 1, 3], [5, 5], [3, 4]
+                  ];
+
+let numbersY = [
+                  [7, 7], [6, 4, 1, 11, 1, 13, 5, 20], [3, 3, 2, 12, 1, 22], [3, 2, 1, 7, 5, 11, 2, 20, 2, 23], [4, 1, 1, 7, 1, 11, 4, 13],
+                  [5, 1, 3, 16, 2, 26], [7, 0, 2, 8, 14, 13], [3, 0, 3, 4, 2, 8, 3, 13, 1, 20, 5, 23], [2, 0, 5, 4, 3, 14, 2, 21, 1, 23, 2, 26],
+                  [3, 0, 6, 4, 7, 13, 4, 23], [6, 0, 4, 7, 2, 12, 4, 17, 2, 24, 2, 28], [7, 0, 1, 8, 6, 20, 3, 27], [5, 1, 1, 8, 2, 18, 8, 22],
+                  [4, 3, 1, 9, 2, 19, 2, 24, 2, 27], [5, 3, 2, 9, 2, 20, 2, 23, 2, 27],
+                  [7, 4, 2, 17, 1, 20, 4, 23], [4, 6, 2, 18, 4, 22], [1, 9, 2, 16, 2, 18, 3, 23], [1, 9, 2, 17, 3, 23], [1, 9, 3, 18, 3, 22],
+                  [1, 9, 2, 23], [1, 9, 2, 22], [1, 9, 4, 21], [1, 9, 2, 23],
+                  [2, 9, 4, 21, 2, 26], [2, 9, 5, 23], [2, 9, 1, 14, 4, 20, 2, 26], [2, 9, 3, 15, 6, 21], [2, 9, 2, 13, 3, 19, 2, 23, 2, 28],
+                  [3, 9, 3, 14, 6, 24], [3, 10, 3, 23, 2, 28],
+                  [5, 10, 2, 24, 3, 27], [3, 10, 5, 15, 7, 22], [4, 11, 9, 19], [11, 12]
+                ];
+
+let winner_score = 0;                
+
+/*let numbersY = [
+                  [7], [6, 1, 1, 5], [3, 2, 1], [3, 1, 5, 2, 2], [4, 1, 1, 4], [5, 3, 2],
+                  [7, 2, 14], [3, 3, 2, 3, 1, 5], [2, 5, 3, 2, 1, 2], [3, 6, 7, 4],
+                  [6, 4, 2, 4, 2, 2], [7, 1, 6, 3], [5, 1, 2, 8], [4, 1, 2, 2, 2], [5, 2, 2, 2, 2],
+                  [7, 2, 1, 4], [4, 2, 4], [1, 2, 2, 3], [1, 2, 3], [1, 3, 3], [1, 2], [1, 2], [1, 4], [1, 2],
+                  [2, 4, 2], [2, 5], [2, 1, 4, 2], [2, 3, 6], [2, 2, 3, 2, 2], [3, 3, 6], [3, 3, 2],
+                  [5, 2, 3], [3, 5, 7], [4, 9], [11]
+                ];*/
+
 function create_table() {
   let main = document.getElementsByClassName('main-content')[0];
   let tbl = document.createElement('table');
@@ -232,6 +263,7 @@ function createTr(tr, index) {
         let tbdy = document.createElement('tbody');
 
         if(i == 0) {
+          tbl.id = 'leftTable';
           createtableLeft(tbdy);
         }
         else {
@@ -246,19 +278,18 @@ function createTr(tr, index) {
 
 function createtableMain(tbdy) {
   tbdy.classList.add("game_pic");
+  tbdy.id = 'centertable';
   for(var i=0; i<30; i++){
     let tr = document.createElement('tr');
     for(var j=0;j<35;j++){
-      let div = document.createElement('div');
       let td = document.createElement('td');
       
-      div.innerText = '\u00A0'; 
-      div.id = 'nmf_' + i + '_' + j;
-      div.classList.add('pic');
-      div.setAttribute("oncontextmenu", "oncell_rightClick(event)");
-      div.setAttribute("onmousedown", "oncell_leftClick(event)");
+      td.innerText = '\u00A0'; 
+      td.id = 'nmf_' + i + '_' + j;
+      td.classList.add('pic');
+      td.setAttribute("oncontextmenu", "oncell_rightClick(event)");
+      td.setAttribute("onmousedown", "oncell_leftClick(event)");
       
-      td.appendChild(div);
       tr.appendChild(td);
     }
     tbdy.appendChild(tr);
@@ -267,18 +298,10 @@ function createtableMain(tbdy) {
 
 function createtableTop(td) {
   let tbdy = document.createElement('tbody');
+  tbdy.id = 'top';
   let tbl = document.createElement('table');
   tbl.id = 'topTable';
   
-  let numbersY = [
-                  [7], [6, 1, 1, 5], [3, 2, 1], [3, 1, 5, 2, 2], [4, 1, 1, 4], [5, 3, 2],
-                  [7, 2, 14], [3, 3, 2, 3, 1, 5], [2, 5, 3, 2, 1, 2], [3, 6, 7, 4],
-                  [6, 4, 2, 4, 2, 2], [7, 1, 6, 3], [5, 1, 2, 8], [4, 1, 2, 2, 2], [5, 2, 2, 2, 2],
-                  [7, 2, 1, 4], [4, 2, 4], [1, 2, 2, 3], [1, 2, 3], [1, 3, 3], [1, 2], [1, 2], [1, 4], [1, 2],
-                  [2, 4, 2], [2, 5], [2, 1, 4, 2], [2, 3, 6], [2, 2, 3, 2, 2], [3, 3, 6], [3, 3, 2],
-                  [5, 2, 3], [3, 5, 7], [4, 9], [11]
-                ];
-
   for (var i=0; i<6;i++){
     let tr = document.createElement('tr');
     for(var j=0;j<35;j++){
@@ -299,27 +322,18 @@ function createtableTop(td) {
   for (var j = 0; j < 35; j++) {
     let b = 0;
     for (var i = 0; i < 6; i++) {
-    if ( i >= 6 - numbersY[j].length ) {
-        let div = list[i].getElementsByTagName("td")[j].firstChild;
-        div.innerText = numbersY[j][b];
-        div.id='nmv_' + i + '_' + j;
-        div.classList.add('num');
-        b++;
+      if ( i >= 6 - (numbersY[j].length / 2) ) {
+          let div = list[i].getElementsByTagName("td")[j].firstChild;
+          div.innerText = numbersY[j][b];
+          div.id='nmv_' + i + '_' + j;
+          div.classList.add('num');
+          b+=2;
       }
     }
   }
 }
 
 function createtableLeft(tbdy) {
-  let numbersX = [
-                  [6], [9], [5, 4], [5, 5], [15], [2, 11], [1, 4, 1, 4], [2, 2, 3, 3], [2, 5,2],
-                  [2, 2, 2, 18], [1, 1, 1, 2, 9], [2, 2, 5], [1, 2, 1, 5], [4, 1, 2, 1, 1, 2],
-                  [2, 4, 1, 2, 1, 2], [2, 4, 1, 1, 1, 1], [3, 2, 1, 1, 1, 1, 1], [3, 2, 1, 1, 2, 1, 1],
-                  [2, 2, 1, 2, 2, 1, 1], [1, 2, 2, 2, 1, 1, 3], [1, 1, 2, 2, 3, 1, 1, 1, 1, 2],
-                  [1, 1, 1, 1, 1, 1, 1, 1, 3, 2], [2, 1, 1, 2, 1, 2, 2, 1, 2, 3], [1, 1, 2, 1, 2, 1, 13, 1, 2],
-                  [1, 1, 15, 4, 7], [2, 5, 3, 1, 1, 5], [5, 1, 1, 4, 1, 2], [4, 5, 3, 1, 3], [5, 5], [3, 4]
-                  ];
-
   for(var i=0; i<30; i++){
     let tr = document.createElement('tr');
     let b=0;
@@ -347,15 +361,98 @@ function createtableLeft(tbdy) {
 
 function oncell_rightClick(e){
   e.preventDefault();
-  e.target.style.fontSize='14px';
-  e.target.innerText = 'X'
-  console.log('Right click');
+  e.target.style.fontSize='11px';
+  e.target.style.backgroundColor = 'white';
+
+  let isX = e.target.innerText;
+  if (isX == 'X') {
+    e.target.innerText = '';
+  }
+  else {
+    e.target.innerText = 'X';  
+  }
 }
 
 function oncell_leftClick(e){
+  let col_rows = e.target.id.split('_');
+  let col = col_rows[2];
+  let row = col_rows[1];
+
   e.preventDefault();
+
   if (e.button == 0) {
-    e.target.style.backgroundColor = 'black';
+    e.target.innerText = '';
+    if ( e.target.style.backgroundColor == 'white' || e.target.style.backgroundColor == '') {
+      e.target.style.backgroundColor = 'black';
+    }
+    else {
+      e.target.style.backgroundColor = 'white';
+    }
+  }
+  checkColumn(col);
+}
+
+function checkColumn(col){
+  let tbl = document.getElementById('topTable');
+  let centertbl = document.getElementById('centertable');
+  let rows = centertbl.rows.length;
+  let rightDiv = 0;
+  let blackDiv = 0;
+  let controlNumber;
+  
+  for (var m=0; m<rows; m++) {
+    let div = centertbl.rows[m].cells[col];
+    if( div.style.backgroundColor == 'black' ){
+      controlNumber = 0;
+      for(var i=0; i<numbersY[col].length; i+=2){
+        let pos = numbersY[col][i+1];
+        let number = numbersY[col][i];
+        controlNumber += number;
+
+        if ( m >= pos && m <= (pos + number) ) {
+          rightDiv++;
+        }
+      }
+      blackDiv++;
+    }
+  }
+
+  if(blackDiv == rightDiv && rightDiv == controlNumber) {
+    for (var m=0; m<rows; m++) {
+      let div = centertbl.rows[m].cells[col];
+      if( div.style.backgroundColor != 'black' ){
+        div.innerText = 'X';
+      }
+    }
+  }
+  else {
+    for (var m=0; m<rows; m++) {
+      let div = centertbl.rows[m].cells[col];
+      if( div.style.backgroundColor != 'black' ){
+        div.innerText = '';
+      }
+    }
+  }
+}
+
+function isWin(){
+  console.log('winner!!!');
+}
+
+function  show_result(){
+  let centertbl = document.getElementById('centertable');
+  let n = numbersY.length;
+
+  for(var i=0, col=0; i<n; i++, col++){
+    for(var j=1; j<numbersY[i].length; j+=2){
+      let pos = numbersY[i][j];
+      let number = numbersY[i][j-1];
+
+      for(var x=pos, item=0; item<number; x++, item++) {
+        let div = centertbl.rows[x].cells[col];  
+        div.style.backgroundColor = 'black';
+      }
+    }
   }
 }
 /*date_page end*/
