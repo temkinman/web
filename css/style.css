@@ -357,12 +357,22 @@ table {
   background-color: white;
 }
 
-.game_pic tr>td:nth-child(5n), #topTable tbody tr td:nth-child(5n) {
-  border-right: 1px solid;
+.game_pic tr>td:nth-child(5n) {
+  border-right: 1px solid #504847;
 }
 
-.game_pic tr:nth-child(5n)>td, #leftTable tbody tr:nth-child(5n) td {
+#topTable tbody tr td:nth-child(5n) {
+  border-right: 1px solid;
+}
+#leftTable tbody tr:nth-child(5n) td {
   border-bottom: 1px solid;
+}
+.game_pic tr:nth-child(5n)>td {
+  border-bottom: 1px solid #504847;
+}
+
+#stop_game, #reset_game, #result {
+  display: none;
 }
 /*krossword end*/
 

@@ -191,44 +191,52 @@ function show(id){
   }
 /*for CSS_page end*/
 
-/*date_page start*/
+/*krossword_page start*/
 let numbersX = [
-                  [6], [9], [5, 4], [5, 5], [15], [2, 11], [1, 4, 1, 4], [2, 2, 3, 3], [2, 5,2],
-                  [2, 2, 2, 18], [1, 1, 1, 2, 9], [2, 2, 5], [1, 2, 1, 5], [4, 1, 2, 1, 1, 2],
-                  [2, 4, 1, 2, 1, 2], [2, 4, 1, 1, 1, 1], [3, 2, 1, 1, 1, 1, 1], [3, 2, 1, 1, 2, 1, 1],
-                  [2, 2, 1, 2, 2, 1, 1], [1, 2, 2, 2, 1, 1, 3], [1, 1, 2, 2, 3, 1, 1, 1, 1, 2],
-                  [1, 1, 1, 1, 1, 1, 1, 1, 3, 2], [2, 1, 1, 2, 1, 2, 2, 1, 2, 3], [1, 1, 2, 1, 2, 1, 13, 1, 2],
-                  [1, 1, 15, 4, 7], [2, 5, 3, 1, 1, 5], [5, 1, 1, 4, 1, 2], [4, 5, 3, 1, 3], [5, 5], [3, 4]
-                  ];
+                  [6, 6], [9, 4], [5, 3, 4, 9], [5, 2, 5, 10], [15, 1], [2, 1, 11, 5], [1, 1, 4, 6, 1, 11, 4, 13],
+                  [2, 0, 2, 3, 3, 8, 3, 14], [2, 0, 5, 7, 2, 15], [2, 0, 2, 6, 2, 9, 18, 12],
+                  [1, 0, 1, 6, 1, 10, 2, 14, 9, 24], [2, 0, 2, 3, 5, 29], [1, 0, 2, 2, 1, 10, 5, 30], [4, 0, 1, 7, 2, 9, 1, 28, 1, 31, 2, 33],
+                  [2, 3, 4, 6, 1, 26, 2, 28, 1, 31, 2, 33], [2, 3, 4, 6, 1, 27, 1, 29, 1, 32, 1, 34],
+                  [3, 4, 2, 8, 1, 17, 1, 27, 1, 29, 1, 32, 1, 34], [3, 4, 2, 9, 1, 15, 2, 17, 1, 27, 1, 32, 1, 34],
+                  [2, 5, 2, 9, 1, 12, 2, 15, 2, 18, 1, 32, 1, 34], [1, 6, 2, 9, 2, 12, 2, 16, 1, 19, 1, 28, 3, 32],
+                  [1, 1, 1, 3, 2, 6, 2, 10, 3, 13, 1, 17, 1, 19, 1, 26, 1, 28, 2, 33],
+                  [1, 1, 1, 3, 1, 6, 1, 8, 1, 11, 1, 14, 1, 22, 1, 24, 3, 26, 2, 33], [2, 1, 1, 6, 1, 8, 2, 11, 1, 16, 2, 18, 2, 21, 1, 24, 2, 26, 3, 32],
+                  [1, 1, 1, 3, 2, 6, 1, 9, 2, 11, 1, 14, 13, 16, 1, 30, 2, 32], [1, 1, 1, 3, 15, 6, 4, 22, 7, 27],
+                  [2, 6, 5, 9, 3, 15, 1, 25, 1, 27, 5, 29], [5, 5, 1, 12, 1, 14, 4, 24, 1, 29, 2, 32],
+                  [4, 5, 5, 11, 3, 24, 1, 29, 3, 31], [5, 10, 5, 28], [3, 10, 4, 28]
+                ];
 
 let numbersY = [
-                  [7, 7], [6, 4, 1, 11, 1, 13, 5, 20], [3, 3, 2, 12, 1, 22], [3, 2, 1, 7, 5, 11, 2, 20, 2, 23], [4, 1, 1, 7, 1, 11, 4, 13],
-                  [5, 1, 3, 16, 2, 26], [7, 0, 2, 8, 14, 13], [3, 0, 3, 4, 2, 8, 3, 13, 1, 20, 5, 23], [2, 0, 5, 4, 3, 14, 2, 21, 1, 23, 2, 26],
-                  [3, 0, 6, 4, 7, 13, 4, 23], [6, 0, 4, 7, 2, 12, 4, 17, 2, 24, 2, 28], [7, 0, 1, 8, 6, 20, 3, 27], [5, 1, 1, 8, 2, 18, 8, 22],
+                  [7, 7], [6, 4, 1, 11, 1, 13, 5, 20], [3, 3, 2, 12, 1, 22], [3, 2, 1, 7, 5, 11, 2, 20, 2, 23], [4, 1, 1, 7, 1, 11, 4, 14],
+                  [5, 1, 3, 16, 2, 26], [7, 0, 2, 9, 14, 14], [3, 0, 3, 4, 2, 8, 3, 13, 1, 20, 5, 23], [2, 0, 5, 4, 3, 14, 2, 21, 1, 24, 2, 26],
+                  [3, 0, 6, 4, 7, 13, 4, 23], [6, 0, 4, 7, 2, 12, 4, 17, 2, 24, 2, 28], [7, 0, 1, 8, 6, 20, 3, 27], [5, 1, 1, 9, 2, 18, 8, 22],
                   [4, 3, 1, 9, 2, 19, 2, 24, 2, 27], [5, 3, 2, 9, 2, 20, 2, 23, 2, 27],
-                  [7, 4, 2, 17, 1, 20, 4, 23], [4, 6, 2, 18, 4, 22], [1, 9, 2, 16, 2, 18, 3, 23], [1, 9, 2, 17, 3, 23], [1, 9, 3, 18, 3, 22],
+                  [7, 4, 2, 17, 1, 20, 4, 24], [4, 6, 2, 18, 4, 22], [1, 9, 2, 16, 2, 19, 3, 23], [1, 9, 2, 17, 3, 22], [1, 9, 3, 18, 3, 22],
                   [1, 9, 2, 23], [1, 9, 2, 22], [1, 9, 4, 21], [1, 9, 2, 23],
                   [2, 9, 4, 21, 2, 26], [2, 9, 5, 23], [2, 9, 1, 14, 4, 20, 2, 26], [2, 9, 3, 15, 6, 21], [2, 9, 2, 13, 3, 19, 2, 23, 2, 28],
                   [3, 9, 3, 14, 6, 24], [3, 10, 3, 23, 2, 28],
                   [5, 10, 2, 24, 3, 27], [3, 10, 5, 15, 7, 22], [4, 11, 9, 19], [11, 12]
                 ];
 
-let winner_score = 0;                
-
-/*let numbersY = [
-                  [7], [6, 1, 1, 5], [3, 2, 1], [3, 1, 5, 2, 2], [4, 1, 1, 4], [5, 3, 2],
-                  [7, 2, 14], [3, 3, 2, 3, 1, 5], [2, 5, 3, 2, 1, 2], [3, 6, 7, 4],
-                  [6, 4, 2, 4, 2, 2], [7, 1, 6, 3], [5, 1, 2, 8], [4, 1, 2, 2, 2], [5, 2, 2, 2, 2],
-                  [7, 2, 1, 4], [4, 2, 4], [1, 2, 2, 3], [1, 2, 3], [1, 3, 3], [1, 2], [1, 2], [1, 4], [1, 2],
-                  [2, 4, 2], [2, 5], [2, 1, 4, 2], [2, 3, 6], [2, 2, 3, 2, 2], [3, 3, 6], [3, 3, 2],
-                  [5, 2, 3], [3, 5, 7], [4, 9], [11]
-                ];*/
+let winner_score = 0; 
+let right_columns = 0;
+let before_right_columns = 0;
+let right_rows = 0;               
+let before_right_rows = 0;               
 
 function create_table() {
   let main = document.getElementsByClassName('main-content')[0];
   let tbl = document.createElement('table');
   tbl.classList.add("nonogram_table");
   let tbdy = document.createElement('tbody');
+  let btn_start = document.getElementById('start');
+  let btn_result = document.getElementById('result');
+  let btn_reset = document.getElementById('reset_game');
+  let btn_stop_game = document.getElementById('stop_game');
+  btn_start.style.display = 'none';
+  btn_result.style.display = 'inline-block';
+  btn_reset.style.display = 'inline-block';
+  btn_stop_game.style.display = 'inline-block';
   
   for(var i=0; i<2; i++) {
     let tr = document.createElement('tr');
@@ -238,6 +246,23 @@ function create_table() {
   }
   tbl.appendChild(tbdy);
   main.appendChild(tbl);
+}
+
+function stopGame(){
+  let tbl = document.getElementsByClassName('nonogram_table');
+  let btn_result = document.getElementById('result');
+  let btn_reset = document.getElementById('reset_game');
+  let btn_stop_game = document.getElementById('stop_game');
+  let btn_start = document.getElementById('start');
+  
+  if (tbl) {
+    // tbl[0].style.display = 'none';
+    tbl[0].remove();
+    btn_start.style.display = 'inline-block';
+    btn_result.style.display = 'none';
+    btn_reset.style.display = 'none';
+    btn_stop_game.style.display = 'none';
+  }
 }
 
 function createTr(tr, index) {
@@ -341,11 +366,11 @@ function createtableLeft(tbdy) {
       let div = document.createElement('div');
       let td = document.createElement('td');
       
-      if ( j >= 10 - numbersX[i].length ) {
+      if ( j >= 10 - (numbersX[i].length / 2) ) {
         div.innerText = numbersX[i][b];
         div.id='nmh_' + i + '_' + j;
         div.classList.add('num');
-        b++;
+        b+=2;
       }
       else {
         div.innerText = '\u00A0'; 
@@ -390,10 +415,14 @@ function oncell_leftClick(e){
     }
   }
   checkColumn(col);
+  checkRow(row);
+  sayWin();
+  console.log('right_columns = ' + right_columns);
+  console.log('right_rows = ' + right_rows);
+  console.log('winner_score = ' + winner_score);
 }
 
 function checkColumn(col){
-  let tbl = document.getElementById('topTable');
   let centertbl = document.getElementById('centertable');
   let rows = centertbl.rows.length;
   let rightDiv = 0;
@@ -435,13 +464,60 @@ function checkColumn(col){
   }
 }
 
-function isWin(){
-  console.log('winner!!!');
+function checkRow(row){
+  let centertbl = document.getElementById('centertable');
+  let rows = centertbl.rows[row].cells.length;
+  let rightDiv = 0;
+  let blackDiv = 0;
+  let controlNumber;
+  for (var m=0; m<rows; m++) {
+    let div = centertbl.rows[row].cells[m];
+    if( div.style.backgroundColor == 'black' ){
+      controlNumber = 0;
+      for(var i=0; i<numbersX[row].length; i+=2){
+        let pos = numbersX[row][i+1];
+        let number = numbersX[row][i];
+        controlNumber += number;
+
+        if ( m >= pos && m <= (pos + number) ) {
+          rightDiv++;
+        }
+      }
+      blackDiv++;
+    }
+  }
+
+  if(blackDiv == rightDiv && rightDiv == controlNumber) {
+    for (var m=0; m<rows; m++) {
+      let div = centertbl.rows[row].cells[m];
+      if( div.style.backgroundColor != 'black' ){
+        div.innerText = 'X';
+      }
+    }
+  }
+  else {
+    for (var m=0; m<rows; m++) {
+      let div = centertbl.rows[row].cells[m];
+      if( div.style.backgroundColor != 'black' ){
+        div.innerText = '';
+      }
+    }
+  }
+}
+
+function sayWin(){
+  winner_score = right_columns + right_rows;
+  if (winner_score == 65) {
+    alert('you win!!!');  
+  }
 }
 
 function  show_result(){
   let centertbl = document.getElementById('centertable');
   let n = numbersY.length;
+  winner_score = 65;
+  right_rows = 30;
+  right_columns = 35;
 
   for(var i=0, col=0; i<n; i++, col++){
     for(var j=1; j<numbersY[i].length; j+=2){
@@ -455,7 +531,19 @@ function  show_result(){
     }
   }
 }
-/*date_page end*/
+
+function reset() {
+  let maintbl = document.getElementsByClassName('pic');
+  right_rows = 0;
+  right_columns = 0;
+  winner_score = 0;
+
+  for(var i=0; i<maintbl.length; i++){
+    maintbl[i].style.backgroundColor = 'white';
+    maintbl[i].innerText = '';
+  }
+}
+/*krossword_page end*/
 
 /*form_page start*/
 
