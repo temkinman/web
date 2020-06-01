@@ -674,6 +674,25 @@ function send(event){
 
 /*form_page stop*/
 
+/*dates_page start*/
+  function addPerson(){
+    let tblperson = document.getElementById('list_person');
+    // let last_ind = tblperson.childE
+    let values = document.getElementById('form_person').elements;
+    // let fio = values[0].value;
+    // let phone = values[1].value;
+    // let date = values[2].value;
+    let result= "<tr><td>";
+
+    for(var i=0; i<3; i++){
+      result += values[i].value + "</td><td>";
+    }
+    result += "</tr>";
+    debugger
+    tblperson.lastElementChild.insertAdjacentHTML('afterEnd', result);
+  }
+/*dates_page stop*/
+
 /*for liveReload*/
   //document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
   document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');

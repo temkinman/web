@@ -320,6 +320,7 @@ tfoot, caption {
 
 table {
   border-collapse: collapse;
+  margin: 0 auto;
 }
 
 .nonogram_table td.num_empty {
@@ -374,7 +375,7 @@ table {
 
 .game_btns {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 #winner {
@@ -1114,6 +1115,51 @@ form>div>p>label {
 }
 
 /*form end*/
+
+/*dates start*/
+.mb-5 {
+  margin-bottom: 5px;
+}
+
+.wth-50 {
+  width: 50%;
+}
+
+.minus_5 {
+  margin-top: -5px;
+}
+
+.person {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 70%;
+  margin-top: 20px;
+}
+
+.person caption {
+  margin-bottom: 10px;
+}
+
+.person td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.person tr:nth-child(even) {
+  background-color: #fcf7f7;
+}
+
+.person tr:nth-child(odd) {
+  background-color: #c6c1c1;
+}
+
+.date_contract {
+  width: 20%;
+}
+
+
+/*dates end*/
 
 @media (max-width: 300px) {
   .news, .add_navigation {
