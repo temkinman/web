@@ -24,10 +24,13 @@
 		<p>NEWS-NEWS-NEWS</p>	
 	</div>	
 	<div class="main-content">
-		<button onclick="create_table()" id="start">start game</button>
-		<button onclick="show_result()" id="result">show result</button>
-		<button onclick="reset()" id="reset_game">reset</button>
-		<button onclick="stopGame()" id="stop_game">close</button>
+		<div class="game_btns">
+			<button onclick="create_table()" id="start" class="btn">start game</button>
+			<button onclick="show_result()" id="result" class="btn">show result</button>
+			<button onclick="reset()" id="reset_game" class="btn">reset</button>
+			<button onclick="stopGame()" id="stop_game" class="btn">close</button>	
+		</div>
+		<p id="winner">Поздравляем вы разгадали кроссворд</p>
 	</div>
 	<div class="add_navigation">
 		<p>дополнительная навигация</p>

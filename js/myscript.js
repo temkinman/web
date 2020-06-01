@@ -202,7 +202,7 @@ let numbersX = [
                   [1, 1, 1, 3, 2, 6, 2, 10, 3, 13, 1, 17, 1, 19, 1, 26, 1, 28, 2, 33],
                   [1, 1, 1, 3, 1, 6, 1, 8, 1, 11, 1, 14, 1, 22, 1, 24, 3, 26, 2, 33], [2, 1, 1, 6, 1, 8, 2, 11, 1, 16, 2, 18, 2, 21, 1, 24, 2, 26, 3, 32],
                   [1, 1, 1, 3, 2, 6, 1, 9, 2, 11, 1, 14, 13, 16, 1, 30, 2, 32], [1, 1, 1, 3, 15, 6, 4, 22, 7, 27],
-                  [2, 6, 5, 9, 3, 15, 1, 25, 1, 27, 5, 29], [5, 5, 1, 12, 1, 14, 4, 24, 1, 29, 2, 32],
+                  [2, 6, 5, 9, 3, 15, 1, 25, 1, 27, 5, 29], [5, 5, 1, 12, 1, 15, 4, 24, 1, 29, 2, 32],
                   [4, 5, 5, 11, 3, 24, 1, 29, 3, 31], [5, 10, 5, 28], [3, 10, 4, 28]
                 ];
 
@@ -218,11 +218,18 @@ let numbersY = [
                   [5, 10, 2, 24, 3, 27], [3, 10, 5, 15, 7, 22], [4, 11, 9, 19], [11, 12]
                 ];
 
-let winner_score = 0; 
-let right_columns = 0;
-let before_right_columns = 0;
-let right_rows = 0;               
-let before_right_rows = 0;               
+let winner_score; 
+let right_columns;
+let flag_right_columns;
+let right_rows;               
+let flag_right_rows; 
+let wrong_block = 0;
+let number_right_rows = 0;
+let number_right_columns = 0;
+let winner = document.getElementById('winner');
+
+let rows = [];             
+let columns = [];
 
 function create_table() {
   let main = document.getElementsByClassName('main-content')[0];
@@ -237,7 +244,13 @@ function create_table() {
   btn_result.style.display = 'inline-block';
   btn_reset.style.display = 'inline-block';
   btn_stop_game.style.display = 'inline-block';
-  
+
+  winner_score = 0;
+  right_columns = 0;
+  right_rows = 0;
+  flag_right_rows = 0;
+  flag_right_columns = 0;
+
   for(var i=0; i<2; i++) {
     let tr = document.createElement('tr');
     createTr(tr, i);
@@ -246,6 +259,8 @@ function create_table() {
   }
   tbl.appendChild(tbdy);
   main.appendChild(tbl);
+  
+  newGame(0);
 }
 
 function stopGame(){
@@ -262,7 +277,9 @@ function stopGame(){
     btn_result.style.display = 'none';
     btn_reset.style.display = 'none';
     btn_stop_game.style.display = 'none';
+    winner.style.display = 'none';
   }
+  newGame(0);
 }
 
 function createTr(tr, index) {
@@ -417,19 +434,16 @@ function oncell_leftClick(e){
   checkColumn(col);
   checkRow(row);
   sayWin();
-  console.log('right_columns = ' + right_columns);
-  console.log('right_rows = ' + right_rows);
-  console.log('winner_score = ' + winner_score);
 }
 
 function checkColumn(col){
   let centertbl = document.getElementById('centertable');
-  let rows = centertbl.rows.length;
+  let number_rows = centertbl.rows.length;
   let rightDiv = 0;
   let blackDiv = 0;
   let controlNumber;
   
-  for (var m=0; m<rows; m++) {
+  for (var m=0; m<number_rows; m++) {
     let div = centertbl.rows[m].cells[col];
     if( div.style.backgroundColor == 'black' ){
       controlNumber = 0;
@@ -438,7 +452,7 @@ function checkColumn(col){
         let number = numbersY[col][i];
         controlNumber += number;
 
-        if ( m >= pos && m <= (pos + number) ) {
+        if ( m >= pos && m < (pos + number) ) {
           rightDiv++;
         }
       }
@@ -447,18 +461,31 @@ function checkColumn(col){
   }
 
   if(blackDiv == rightDiv && rightDiv == controlNumber) {
-    for (var m=0; m<rows; m++) {
-      let div = centertbl.rows[m].cells[col];
-      if( div.style.backgroundColor != 'black' ){
-        div.innerText = 'X';
-      }
-    }
+    columns[col] = 1;
+    flag_right_columns = 1;
   }
   else {
-    for (var m=0; m<rows; m++) {
-      let div = centertbl.rows[m].cells[col];
-      if( div.style.backgroundColor != 'black' ){
-        div.innerText = '';
+    if ( flag_right_columns == 1) {
+      columns[col] = 0;
+      flag_right_columns = 0;
+    }
+  }
+
+  for (var i=0; i<columns.length; i++) {
+    if(columns[i] == 1) {
+      for (var m=0; m<number_rows; m++) {
+        let div = centertbl.rows[m].cells[i];
+
+        if( div.style.backgroundColor != 'black' ){
+          div.innerText = 'X';
+        }
+      }
+    } else {
+      for (var m=0; m<number_rows; m++) {
+        let div = centertbl.rows[m].cells[i];
+        if( div.style.backgroundColor != 'black' ){
+          div.innerText = '';
+        }
       }
     }
   }
@@ -466,11 +493,11 @@ function checkColumn(col){
 
 function checkRow(row){
   let centertbl = document.getElementById('centertable');
-  let rows = centertbl.rows[row].cells.length;
+  let number_rows = centertbl.rows[row].cells.length;
   let rightDiv = 0;
   let blackDiv = 0;
   let controlNumber;
-  for (var m=0; m<rows; m++) {
+  for (var m=0; m<number_rows; m++) {
     let div = centertbl.rows[row].cells[m];
     if( div.style.backgroundColor == 'black' ){
       controlNumber = 0;
@@ -479,7 +506,7 @@ function checkRow(row){
         let number = numbersX[row][i];
         controlNumber += number;
 
-        if ( m >= pos && m <= (pos + number) ) {
+        if ( m >= pos && m < (pos + number) ) {
           rightDiv++;
         }
       }
@@ -488,27 +515,75 @@ function checkRow(row){
   }
 
   if(blackDiv == rightDiv && rightDiv == controlNumber) {
-    for (var m=0; m<rows; m++) {
-      let div = centertbl.rows[row].cells[m];
-      if( div.style.backgroundColor != 'black' ){
-        div.innerText = 'X';
-      }
-    }
+    rows[row] = 1;
+    flag_right_rows = 1;
   }
   else {
-    for (var m=0; m<rows; m++) {
-      let div = centertbl.rows[row].cells[m];
-      if( div.style.backgroundColor != 'black' ){
-        div.innerText = '';
+    if (flag_right_rows == 1) {
+      rows[row] = 0;
+      flag_right_rows = 0;
+    }
+  }
+
+  for(var i=0; i<rows.length; i++){
+    if(rows[i] == 1) {
+      for (var m=0; m<number_rows; m++) {
+        let div = centertbl.rows[i].cells[m];
+        if(rows[i] == 1) {
+          if( div.style.backgroundColor != 'black' ){
+            div.innerText = 'X';
+          }
+        }
+      }
+    }else {
+      for (var m=0; m<number_rows; m++) {
+        let div = centertbl.rows[i].cells[m];
+        if(rows[i] == 1) {
+          if( div.style.backgroundColor != 'black' ){
+            div.innerText = '';
+          }
+        }
       }
     }
   }
 }
 
 function sayWin(){
-  winner_score = right_columns + right_rows;
-  if (winner_score == 65) {
-    alert('you win!!!');  
+  winner_score = 0;
+
+  for(var i=0; i<columns.length;i++) {
+    if(columns[i] == 0) {
+      wrong_block = 1;
+      break;
+    }
+    else winner_score++;
+  }
+
+  for(var i=0; i<rows.length;i++) {
+    if(rows[i] == 0) {
+      wrong_block = 1;
+      break;
+    }
+    else winner_score++;
+  }
+
+  if ( winner_score == 65) {
+    winner.style.display = 'block';
+  }
+  else {
+    winner.style.display = 'none';
+  }
+}
+
+function newGame(number){
+  rows = [];
+  columns = [];
+
+  for (var i=0; i<30; i++) {
+    rows.push(number);
+  }
+  for (var i=0; i<35; i++) {
+    columns.push(number);
   }
 }
 
@@ -516,8 +591,12 @@ function  show_result(){
   let centertbl = document.getElementById('centertable');
   let n = numbersY.length;
   winner_score = 65;
-  right_rows = 30;
-  right_columns = 35;
+  number_right_rows = 30;
+  number_right_columns = 35;
+  flag_right_columns = 1;
+  flag_right_rows = 1;
+
+  newGame(1);
 
   for(var i=0, col=0; i<n; i++, col++){
     for(var j=1; j<numbersY[i].length; j+=2){
@@ -536,7 +615,9 @@ function reset() {
   let maintbl = document.getElementsByClassName('pic');
   right_rows = 0;
   right_columns = 0;
-  winner_score = 0;
+
+  winner.style.display = 'none';
+  newGame(0);
 
   for(var i=0; i<maintbl.length; i++){
     maintbl[i].style.backgroundColor = 'white';
