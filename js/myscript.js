@@ -409,9 +409,11 @@ function oncell_rightClick(e){
   let isX = e.target.innerText;
   if (isX == 'X') {
     e.target.innerText = '';
+    e.target.classList.remove('manual');
   }
   else {
-    e.target.innerText = 'X';  
+    e.target.innerText = 'X';
+    e.target.classList.add('manual');
   }
 }
 
@@ -483,6 +485,9 @@ function checkColumn(col){
     } else {
       for (var m=0; m<number_rows; m++) {
         let div = centertbl.rows[m].cells[i];
+         if( div.classList.contains('manual') ) {
+           continue;
+         }
         if( div.style.backgroundColor != 'black' ){
           div.innerText = '';
         }
@@ -497,6 +502,7 @@ function checkRow(row){
   let rightDiv = 0;
   let blackDiv = 0;
   let controlNumber;
+  
   for (var m=0; m<number_rows; m++) {
     let div = centertbl.rows[row].cells[m];
     if( div.style.backgroundColor == 'black' ){
@@ -529,19 +535,19 @@ function checkRow(row){
     if(rows[i] == 1) {
       for (var m=0; m<number_rows; m++) {
         let div = centertbl.rows[i].cells[m];
-        if(rows[i] == 1) {
-          if( div.style.backgroundColor != 'black' ){
-            div.innerText = 'X';
-          }
+        
+        if( div.style.backgroundColor != 'black' ){
+          div.innerText = 'X';
         }
       }
     }else {
       for (var m=0; m<number_rows; m++) {
         let div = centertbl.rows[i].cells[m];
-        if(rows[i] == 1) {
-          if( div.style.backgroundColor != 'black' ){
-            div.innerText = '';
-          }
+        if( div.classList.contains('manual') ) {
+           continue;
+         }
+        if( div.style.backgroundColor != 'black' ){
+          div.innerText = '';
         }
       }
     }
