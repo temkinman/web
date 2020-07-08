@@ -219,19 +219,12 @@ let numbersY = [
                 ];
 
 let winner_score; 
-let right_columns;
-let flag_right_columns;
-let right_rows;               
-let flag_right_rows; 
-let wrong_block = 0;
-let number_right_rows = 0;
-let number_right_columns = 0;
+let col_rows=[]; 
 let winner = document.getElementById('winner');
-
 let rows = [];             
 let columns = [];
 
-function create_table() {
+function startGame() {
   let main = document.getElementsByClassName('main-content')[0];
   let tbl = document.createElement('table');
   tbl.classList.add("nonogram_table");
@@ -246,11 +239,7 @@ function create_table() {
   btn_stop_game.style.display = 'inline-block';
 
   winner_score = 0;
-  right_columns = 0;
-  right_rows = 0;
-  flag_right_rows = 0;
-  flag_right_columns = 0;
-
+  
   for(var i=0; i<2; i++) {
     let tr = document.createElement('tr');
     createTr(tr, i);
@@ -403,7 +392,7 @@ function createtableLeft(tbdy) {
 
 function oncell_rightClick(e){
   e.preventDefault();
-  e.target.style.fontSize='11px';
+  e.target.style.fontSize='9px';
   e.target.style.backgroundColor = 'white';
 
   let isX = e.target.innerText;
@@ -418,7 +407,7 @@ function oncell_rightClick(e){
 }
 
 function oncell_leftClick(e){
-  let col_rows = e.target.id.split('_');
+  col_rows = e.target.id.split('_');
   let col = col_rows[2];
   let row = col_rows[1];
 
@@ -447,6 +436,7 @@ function checkColumn(col){
   
   for (var m=0; m<number_rows; m++) {
     let div = centertbl.rows[m].cells[col];
+
     if( div.style.backgroundColor == 'black' ){
       controlNumber = 0;
       for(var i=0; i<numbersY[col].length; i+=2){
@@ -464,36 +454,26 @@ function checkColumn(col){
 
   if(blackDiv == rightDiv && rightDiv == controlNumber) {
     columns[col] = 1;
-    flag_right_columns = 1;
   }
   else {
-    if ( flag_right_columns == 1) {
-      columns[col] = 0;
-      flag_right_columns = 0;
-    }
+    columns[col] = 0;
   }
 
-  for (var i=0; i<columns.length; i++) {
-    if(columns[i] == 1) {
-      for (var m=0; m<number_rows; m++) {
-        let div = centertbl.rows[m].cells[i];
+  for (var m=0; m<number_rows; m++) {
+    let div = centertbl.rows[m].cells[col];
 
-        if( div.style.backgroundColor != 'black' ){
-          div.innerText = 'X';
-        }
+    if(columns[col] == 0) {
+      if( div.classList.contains('manual') ) {
+        continue;
       }
-    } else {
-      for (var m=0; m<number_rows; m++) {
-        let div = centertbl.rows[m].cells[i];
-         if( div.classList.contains('manual') ) {
-           continue;
-         }
-        if( div.style.backgroundColor != 'black' ){
-          div.innerText = '';
-        }
+      if( div.style.backgroundColor != 'black' ){
+        div.innerText = ' ';
       }
     }
   }
+  console.log(columns);
+  console.log(rows);
+  console.log("----------------------");
 }
 
 function checkRow(row){
@@ -502,7 +482,7 @@ function checkRow(row){
   let rightDiv = 0;
   let blackDiv = 0;
   let controlNumber;
-  
+
   for (var m=0; m<number_rows; m++) {
     let div = centertbl.rows[row].cells[m];
     if( div.style.backgroundColor == 'black' ){
@@ -522,44 +502,71 @@ function checkRow(row){
 
   if(blackDiv == rightDiv && rightDiv == controlNumber) {
     rows[row] = 1;
-    flag_right_rows = 1;
   }
   else {
-    if (flag_right_rows == 1) {
-      rows[row] = 0;
-      flag_right_rows = 0;
+    rows[row] = 0;
+  }
+}
+
+function show_right_rows_and_columns(){
+  let centertbl = document.getElementById('centertable');
+  let number_rows = centertbl.rows.length;
+  
+  for(var i=0;i<rows.length;i++){
+    let number_rows = centertbl.rows[i].cells.length;
+
+    for (var j=0; j<number_rows; j++) {
+      let div = centertbl.rows[i].cells[j];
+
+      if(rows[i] == 1) {
+        if( div.style.backgroundColor != 'black' ){
+          div.innerText = 'X';
+        }  
+      }
+
+      if(rows[i] == 0) {
+        if( div.classList.contains('manual') ) {
+          continue;
+        }
+        if( div.style.backgroundColor != 'black' ){
+          div.innerText = ' ';
+        }
+      }
     }
   }
 
-  for(var i=0; i<rows.length; i++){
-    if(rows[i] == 1) {
-      for (var m=0; m<number_rows; m++) {
-        let div = centertbl.rows[i].cells[m];
-        
+  for(var i=0; i<columns.length; i++) {
+    for (var j=0; j<number_rows; j++) {
+      let div = centertbl.rows[j].cells[i];
+      if(rows[j] == 1) {
+        continue;
+      }
+
+      if(columns[i] == 1) {
         if( div.style.backgroundColor != 'black' ){
           div.innerText = 'X';
         }
       }
-    }else {
-      for (var m=0; m<number_rows; m++) {
-        let div = centertbl.rows[i].cells[m];
+
+      if(columns[i] == 0) {
         if( div.classList.contains('manual') ) {
-           continue;
-         }
+          continue;
+        }
         if( div.style.backgroundColor != 'black' ){
-          div.innerText = '';
+          div.innerText = ' ';
         }
       }
     }
-  }
+  } 
 }
 
 function sayWin(){
   winner_score = 0;
+  
+  show_right_rows_and_columns();
 
   for(var i=0; i<columns.length;i++) {
     if(columns[i] == 0) {
-      wrong_block = 1;
       break;
     }
     else winner_score++;
@@ -567,7 +574,6 @@ function sayWin(){
 
   for(var i=0; i<rows.length;i++) {
     if(rows[i] == 0) {
-      wrong_block = 1;
       break;
     }
     else winner_score++;
@@ -596,13 +602,9 @@ function newGame(number){
 function  show_result(){
   let centertbl = document.getElementById('centertable');
   let n = numbersY.length;
-  winner_score = 65;
-  number_right_rows = 30;
-  number_right_columns = 35;
-  flag_right_columns = 1;
-  flag_right_rows = 1;
 
-  newGame(1);
+
+  //newGame(1);
 
   for(var i=0, col=0; i<n; i++, col++){
     for(var j=1; j<numbersY[i].length; j+=2){
@@ -615,6 +617,7 @@ function  show_result(){
       }
     }
   }
+  sayWin();
 }
 
 function reset() {
@@ -681,20 +684,16 @@ function send(event){
 /*form_page stop*/
 
 /*dates_page start*/
-  function addPerson(){
+  function addPerson(event){
+    event.preventDefault();
     let tblperson = document.getElementById('list_person');
-    // let last_ind = tblperson.childE
     let values = document.getElementById('form_person').elements;
-    // let fio = values[0].value;
-    // let phone = values[1].value;
-    // let date = values[2].value;
-    let result= "<tr><td>";
+    let result= "<tr>";
 
     for(var i=0; i<3; i++){
-      result += values[i].value + "</td><td>";
+      result += "<td>" + values[i].value + "</td>";
     }
     result += "</tr>";
-    debugger
     tblperson.lastElementChild.insertAdjacentHTML('afterEnd', result);
   }
 /*dates_page stop*/
