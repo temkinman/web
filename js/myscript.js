@@ -233,7 +233,7 @@ let solution = [
                 ];
 
 let userGame = Array(1050).fill(0); // массив игры пользователя
-
+let allCells = [];
 let numbersX = [
                   [6, 6], [9, 4], [5, 3, 4, 9], [5, 2, 5, 10], [15, 1], [2, 1, 11, 5], [1, 1, 4, 6, 1, 11, 4, 13],
                   [2, 0, 2, 3, 3, 8, 3, 14], [2, 0, 5, 7, 2, 15], [2, 0, 2, 6, 2, 9, 18, 12],
@@ -260,23 +260,20 @@ let numbersY = [
                   [5, 10, 2, 24, 3, 27], [3, 10, 5, 15, 7, 22], [4, 11, 9, 19], [11, 12]
                 ];
 
-let winner_score; 
-let col_rows=[]; 
 let winner = document.getElementById('winner');
-let rows = [];             
-let columns = [];
-
 let btn_start = document.getElementById('start');
 let btn_result = document.getElementById('result');
 let btn_reset = document.getElementById('reset_game');
 let btn_stop_game = document.getElementById('stop_game');
 let btn_usergame = document.getElementById('usergame');
+let btn_show_errors = document.getElementById('errors');
 
 btn_start.addEventListener('click', startGame);
 btn_result.addEventListener('click', show_result);
 btn_reset.addEventListener('click', reset);
 btn_stop_game.addEventListener('click', stopGame);
 btn_usergame.addEventListener('click', showUserGame);
+btn_show_errors.addEventListener('click', show_errors);
 
 function startGame() {
   let main = document.getElementsByClassName('main-content')[0];
@@ -289,6 +286,7 @@ function startGame() {
   btn_reset.style.display = 'inline-block';
   btn_stop_game.style.display = 'inline-block';
   btn_usergame.style.display = 'inline-block';
+  btn_show_errors.style.display = 'inline-block';
 
   winner_score = 0;
   
@@ -300,29 +298,19 @@ function startGame() {
   }
   tbl.appendChild(tbdy);
   main.appendChild(tbl);
-  
-  //newGame(0);
-  
 }
 
 function stopGame(){
   let tbl = document.getElementsByClassName('nonogram_table');
-  let btn_result = document.getElementById('result');
-  let btn_reset = document.getElementById('reset_game');
-  let btn_stop_game = document.getElementById('stop_game');
-  let btn_start = document.getElementById('start');
   
-  if (tbl) {
-    // tbl[0].style.display = 'none';
-    tbl[0].remove();
-    btn_start.style.display = 'inline-block';
-    btn_result.style.display = 'none';
-    btn_reset.style.display = 'none';
-    btn_stop_game.style.display = 'none';
-    winner.style.display = 'none';
-    btn_usergame.style.display = 'none';
-  }
-  //newGame(0);
+  tbl[0].remove();
+  btn_start.style.display = 'inline-block';
+  btn_result.style.display = 'none';
+  btn_reset.style.display = 'none';
+  btn_stop_game.style.display = 'none';
+  winner.style.display = 'none';
+  btn_usergame.style.display = 'none';
+  btn_show_errors.style.display = 'none';
 }
 
 function createTr(tr, index) {
@@ -419,6 +407,8 @@ function createtableTop(td) {
       }
     }
   }
+
+  allCells = document.getElementsByClassName('pic');
 }
 
 function createtableLeft(tbdy) {
@@ -467,12 +457,7 @@ function oncell_rightClick(e){
 }
 
 function oncell_leftClick(e){
-  col_rows = e.target.id.split('_');
-  let col = col_rows[2];
-  let row = col_rows[1];
   let div = e.target;
-
-
   e.preventDefault();
 
   if (e.button == 0) {
@@ -489,12 +474,10 @@ function oncell_leftClick(e){
   }
 
   checkResultGame();
-  //checkColumn(col);
-  //checkRow(row);
 }
 
 function showUserGame(){
-  let allCells = document.getElementsByClassName('pic');
+  
 
   for(var i=0; i<userGame.length; i++)
   {
@@ -510,7 +493,6 @@ function showUserGame(){
 
 function checkResultGame(){
   let error = false;
-  let allCells = document.getElementsByClassName('pic');
 
   for(var i=0; i<solution.length; i++)
   {
@@ -525,6 +507,18 @@ function checkResultGame(){
   showWinnerMessage(error);
 }
 
+function show_errors(){
+  for (var i=0; i<solution.length; i++) {
+    if (userGame[i] == 1 ){
+      if (userGame[i] != solution[i]){
+        let cell = allCells[i];
+        cell.style.backgroundColor = 'red';  
+      }  
+    }
+  }
+  setTimeout(showUserGame,3000);
+}
+
 function showWinnerMessage(error){
   if ( !error) {
     winner.style.display = 'block';
@@ -534,148 +528,16 @@ function showWinnerMessage(error){
   }
 }
 
-
-function checkColumn(col){
-  let centertbl = document.getElementById('centertable');
-  let number_rows = centertbl.rows.length;
-  let rightDiv = 0;
-  let blackDiv = 0;
-  let controlNumber;
-
-  /*for (var m=0; m<number_rows; m++) {
-    let div = centertbl.rows[m].cells[col];
-
-    if( div.style.backgroundColor == 'black' ){
-      controlNumber = 0;
-      for(var i=0; i<numbersY[col].length; i+=2){
-        let pos = numbersY[col][i+1];
-        let number = numbersY[col][i];
-        controlNumber += number;
-
-        if ( m >= pos && m < (pos + number) ) {
-          rightDiv++;
-        }
-      }
-      blackDiv++;
-    }
-  }
-
-  if(blackDiv == rightDiv && rightDiv == controlNumber) {
-    columns[col] = 1;
-  }
-  else {
-    columns[col] = 0;
-  }
-
-  for (var m=0; m<number_rows; m++) {
-    let div = centertbl.rows[m].cells[col];
-
-    if(columns[col] == 0) {
-      if( div.classList.contains('manual') ) {
-        continue;
-      }
-      if( div.style.backgroundColor != 'black' ){
-        div.innerText = ' ';
-      }
-    }
-  }*/
-}
-
-function checkRow(row){
-  let centertbl = document.getElementById('centertable');
-  let number_rows = centertbl.rows[row].cells.length;
-  let rightDiv = 0;
-  let blackDiv = 0;
-  let controlNumber;
-
-  for (var m=0; m<number_rows; m++) {
-    let div = centertbl.rows[row].cells[m];
-    if( div.style.backgroundColor == 'black' ){
-      controlNumber = 0;
-      for(var i=0; i<numbersX[row].length; i+=2){
-        let pos = numbersX[row][i+1];
-        let number = numbersX[row][i];
-        controlNumber += number;
-
-        if ( m >= pos && m < (pos + number) ) {
-          rightDiv++;
-        }
-      }
-      blackDiv++;
-    }
-  }
-
-  if(blackDiv == rightDiv && rightDiv == controlNumber) {
-    rows[row] = 1;
-  }
-  else {
-    rows[row] = 0;
-  }
-}
-
-function show_right_rows_and_columns(){
-  let centertbl = document.getElementById('centertable');
-  let number_rows = centertbl.rows.length;
-  
-  for(var i=0;i<rows.length;i++){
-    let number_rows = centertbl.rows[i].cells.length;
-
-    for (var j=0; j<number_rows; j++) {
-      let div = centertbl.rows[i].cells[j];
-
-      if(rows[i] == 1) {
-        if( div.style.backgroundColor != 'black' ){
-          div.innerText = 'X';
-        }  
-      }
-
-      if(rows[i] == 0) {
-        if( div.classList.contains('manual') ) {
-          continue;
-        }
-        if( div.style.backgroundColor != 'black' ){
-          div.innerText = ' ';
-        }
-      }
-    }
-  }
-
-  for(var i=0; i<columns.length; i++) {
-    for (var j=0; j<number_rows; j++) {
-      let div = centertbl.rows[j].cells[i];
-      if(rows[j] == 1) {
-        continue;
-      }
-
-      if(columns[i] == 1) {
-        if( div.style.backgroundColor != 'black' ){
-          div.innerText = 'X';
-        }
-      }
-
-      if(columns[i] == 0) {
-        if( div.classList.contains('manual') ) {
-          continue;
-        }
-        if( div.style.backgroundColor != 'black' ){
-          div.innerText = ' ';
-        }
-      }
-    }
-  } 
-}
-
 function  show_result(){
-  let centertbl = document.getElementById('centertable');
-  let n = numbersY.length;
-
   let allCells = document.getElementsByClassName('pic');
 
   for(var i=0; i<solution.length;i++){
     let div = allCells[i];
     if(solution[i] == 1) {
       div.style.backgroundColor = 'black';
-      userGame[i] = 1;
+    }
+    else {
+      div.style.backgroundColor = 'white';
     }
   }
   checkResultGame();
@@ -683,12 +545,9 @@ function  show_result(){
 
 function reset() {
   let maintbl = document.getElementsByClassName('pic');
-  //right_rows = 0;
-  //right_columns = 0;
   userGame.fill(0);
 
   winner.style.display = 'none';
-  //newGame(0);
 
   for(var i=0; i<maintbl.length; i++){
     maintbl[i].style.backgroundColor = 'white';
@@ -762,6 +621,6 @@ function send(event){
 
 /*for liveReload*/
   //document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
-  document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
+  // document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
 /*end*/
 

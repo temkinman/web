@@ -369,7 +369,7 @@ table {
   border-bottom: 1px solid #504847;
 }
 
-#stop_game, #reset_game, #result, #usergame {
+#stop_game, #reset_game, #result, #usergame, #errors {
   display: none;
 }
 
@@ -384,6 +384,12 @@ table {
   text-align: center;
   color: #ce4b4b;
   font-weight: bold;
+}
+
+.content-croswword {
+  width: 90% !important;
+  margin: 0 auto;
+  float: unset !important;
 }
 /*krossword end*/
 
