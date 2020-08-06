@@ -192,6 +192,48 @@ function show(id){
 /*for CSS_page end*/
 
 /*krossword_page start*/
+
+//массив с решением
+let solution = [
+                 0,0,0,0,0,  0,1,1,1,1,  1,1,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  
+                 0,0,0,0,1,  1,1,1,1,1,  1,1,1,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,
+                 0,0,0,1,1,  1,1,1,0,1,  1,1,1,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,
+                 0,0,1,1,1,  1,1,0,0,0,  1,1,1,1,1,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,
+                 0,1,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  1,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,
+
+                 0,1,1,0,0,  1,1,1,1,1,  1,1,1,1,1,  1,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,
+                 0,1,0,0,0,  0,1,1,1,1,  0,1,0,1,1,  1,1,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,
+                 1,1,0,1,1,  0,0,0,1,1,  1,0,0,0,1,  1,1,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,
+                 1,1,0,0,0,  0,0,1,1,1,  1,1,0,0,0,  1,1,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,
+                 1,1,0,0,0,  0,1,1,0,1,  1,0,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  0,0,0,0,0,
+
+                 1,0,0,0,0,  0,1,0,0,0,  1,0,0,0,1,  1,0,0,0,0,  0,0,0,0,1,  1,1,1,1,1,  1,1,1,0,0,
+                 1,1,0,1,1,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,1,  1,1,1,1,0,
+                 1,0,1,1,0,  0,0,0,0,0,  1,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  1,1,1,1,1,
+                 1,1,1,1,0,  0,0,1,0,1,  1,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,1,0,  0,1,0,1,1,
+                 0,0,0,1,1,  0,1,1,1,1,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,1,0,1,1,  0,1,0,1,1,
+                 
+                 0,0,0,1,1,  0,1,1,1,1,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,1,0,1,  0,0,1,0,1,
+                 0,0,0,0,1,  1,1,0,1,1,  0,0,0,0,0,  0,0,1,0,0,  0,0,0,0,0,  0,0,1,0,1,  0,0,1,0,1,
+                 0,0,0,0,1,  1,1,0,0,1,  1,0,0,0,0,  1,0,1,1,0,  0,0,0,0,0,  0,0,1,0,0,  0,0,1,0,1,
+                 0,0,0,0,0,  1,1,0,0,1,  1,0,1,0,0,  1,1,0,1,1,  0,0,0,0,0,  0,0,0,0,0,  0,0,1,0,1,
+                 0,0,0,0,0,  0,1,0,0,1,  1,0,1,1,0,  0,1,1,0,1,  0,0,0,0,0,  0,0,0,1,0,  0,0,1,1,1,
+
+                 0,1,0,1,0,  0,1,1,0,0,  1,1,0,1,1,  1,0,1,0,1,  0,0,0,0,0,  0,1,0,1,0,  0,0,0,1,1,
+                 0,1,0,1,0,  0,1,0,1,0,  0,1,0,0,1,  0,0,0,0,0,  0,0,1,0,1,  0,1,1,1,0,  0,0,0,1,1,
+                 0,1,1,0,0,  0,1,0,1,0,  0,1,1,0,0,  0,1,0,1,1,  0,1,1,0,1,  0,1,1,0,0,  0,0,1,1,1,
+                 0,1,0,1,0,  0,1,1,0,1,  0,1,1,0,1,  0,1,1,1,1,  1,1,1,1,1,  1,1,1,1,0,  1,0,1,1,0,
+                 0,1,0,1,0,  0,1,1,1,1,  1,1,1,1,1,  1,1,1,1,1,  1,0,1,1,1,  1,0,1,1,1,  1,1,1,1,0,
+
+                 0,0,0,0,0,  0,1,1,0,1,  1,1,1,1,0,  1,1,1,0,0,  0,0,0,0,0,  1,0,1,0,1,  1,1,1,1,0,
+                 0,0,0,0,0,  1,1,1,1,1,  0,0,1,0,0,  1,0,0,0,0,  0,0,0,0,1,  1,1,1,0,1,  0,0,1,1,0,
+                 0,0,0,0,0,  1,1,1,1,0,  0,1,1,1,1,  1,0,0,0,0,  0,0,0,0,1,  1,1,0,0,1,  0,1,1,1,0,
+                 0,0,0,0,0,  0,0,0,0,0,  1,1,1,1,1,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,1,1,  1,1,1,0,0,
+                 0,0,0,0,0,  0,0,0,0,0,  1,1,1,0,0,  0,0,0,0,0,  0,0,0,0,0,  0,0,0,1,1,  1,1,0,0,0
+                ];
+
+let userGame = Array(1050).fill(0); // массив игры пользователя
+
 let numbersX = [
                   [6, 6], [9, 4], [5, 3, 4, 9], [5, 2, 5, 10], [15, 1], [2, 1, 11, 5], [1, 1, 4, 6, 1, 11, 4, 13],
                   [2, 0, 2, 3, 3, 8, 3, 14], [2, 0, 5, 7, 2, 15], [2, 0, 2, 6, 2, 9, 18, 12],
@@ -224,19 +266,29 @@ let winner = document.getElementById('winner');
 let rows = [];             
 let columns = [];
 
+let btn_start = document.getElementById('start');
+let btn_result = document.getElementById('result');
+let btn_reset = document.getElementById('reset_game');
+let btn_stop_game = document.getElementById('stop_game');
+let btn_usergame = document.getElementById('usergame');
+
+btn_start.addEventListener('click', startGame);
+btn_result.addEventListener('click', show_result);
+btn_reset.addEventListener('click', reset);
+btn_stop_game.addEventListener('click', stopGame);
+btn_usergame.addEventListener('click', showUserGame);
+
 function startGame() {
   let main = document.getElementsByClassName('main-content')[0];
   let tbl = document.createElement('table');
   tbl.classList.add("nonogram_table");
   let tbdy = document.createElement('tbody');
-  let btn_start = document.getElementById('start');
-  let btn_result = document.getElementById('result');
-  let btn_reset = document.getElementById('reset_game');
-  let btn_stop_game = document.getElementById('stop_game');
+
   btn_start.style.display = 'none';
   btn_result.style.display = 'inline-block';
   btn_reset.style.display = 'inline-block';
   btn_stop_game.style.display = 'inline-block';
+  btn_usergame.style.display = 'inline-block';
 
   winner_score = 0;
   
@@ -249,7 +301,8 @@ function startGame() {
   tbl.appendChild(tbdy);
   main.appendChild(tbl);
   
-  newGame(0);
+  //newGame(0);
+  
 }
 
 function stopGame(){
@@ -267,8 +320,9 @@ function stopGame(){
     btn_reset.style.display = 'none';
     btn_stop_game.style.display = 'none';
     winner.style.display = 'none';
+    btn_usergame.style.display = 'none';
   }
-  newGame(0);
+  //newGame(0);
 }
 
 function createTr(tr, index) {
@@ -310,18 +364,21 @@ function createTr(tr, index) {
 function createtableMain(tbdy) {
   tbdy.classList.add("game_pic");
   tbdy.id = 'centertable';
+  let n = 0;
   for(var i=0; i<30; i++){
+    
     let tr = document.createElement('tr');
     for(var j=0;j<35;j++){
       let td = document.createElement('td');
       
       td.innerText = '\u00A0'; 
-      td.id = 'nmf_' + i + '_' + j;
+      td.id = n;
       td.classList.add('pic');
       td.setAttribute("oncontextmenu", "oncell_rightClick(event)");
       td.setAttribute("onmousedown", "oncell_leftClick(event)");
       
       tr.appendChild(td);
+      n++;
     }
     tbdy.appendChild(tr);
   }
@@ -396,6 +453,9 @@ function oncell_rightClick(e){
   e.target.style.backgroundColor = 'white';
 
   let isX = e.target.innerText;
+  let index = div.id;
+  userGame[index] = 0;
+
   if (isX == 'X') {
     e.target.innerText = '';
     e.target.classList.remove('manual');
@@ -410,22 +470,70 @@ function oncell_leftClick(e){
   col_rows = e.target.id.split('_');
   let col = col_rows[2];
   let row = col_rows[1];
+  let div = e.target;
+
 
   e.preventDefault();
 
   if (e.button == 0) {
-    e.target.innerText = '';
-    if ( e.target.style.backgroundColor == 'white' || e.target.style.backgroundColor == '') {
-      e.target.style.backgroundColor = 'black';
+    div.innerText = '';
+    let index = div.id;
+    if ( div.style.backgroundColor == 'white' || div.style.backgroundColor == '') {
+      div.style.backgroundColor = 'black';
+      userGame[index] = 1;
     }
     else {
-      e.target.style.backgroundColor = 'white';
+      div.style.backgroundColor = 'white';
+      userGame[index] = 0;
     }
   }
-  checkColumn(col);
-  checkRow(row);
-  sayWin();
+
+  checkResultGame();
+  //checkColumn(col);
+  //checkRow(row);
 }
+
+function showUserGame(){
+  let allCells = document.getElementsByClassName('pic');
+
+  for(var i=0; i<userGame.length; i++)
+  {
+    let cell = allCells[i];
+    if(userGame[i] == 1){
+      cell.style.backgroundColor = 'black';
+    }
+    else {
+      cell.style.backgroundColor = 'white';
+    }
+  }
+}
+
+function checkResultGame(){
+  let error = false;
+  let allCells = document.getElementsByClassName('pic');
+
+  for(var i=0; i<solution.length; i++)
+  {
+    let cell = allCells[i];
+    if(solution[i] != userGame[i]){
+      error = true;
+      //console.log("error in index: " + i);
+      //console.log(error);
+      break;
+    }
+  }
+  showWinnerMessage(error);
+}
+
+function showWinnerMessage(error){
+  if ( !error) {
+    winner.style.display = 'block';
+  }
+  else {
+    winner.style.display = 'none';
+  }
+}
+
 
 function checkColumn(col){
   let centertbl = document.getElementById('centertable');
@@ -433,8 +541,8 @@ function checkColumn(col){
   let rightDiv = 0;
   let blackDiv = 0;
   let controlNumber;
-  
-  for (var m=0; m<number_rows; m++) {
+
+  /*for (var m=0; m<number_rows; m++) {
     let div = centertbl.rows[m].cells[col];
 
     if( div.style.backgroundColor == 'black' ){
@@ -470,10 +578,7 @@ function checkColumn(col){
         div.innerText = ' ';
       }
     }
-  }
-  console.log(columns);
-  console.log(rows);
-  console.log("----------------------");
+  }*/
 }
 
 function checkRow(row){
@@ -560,73 +665,30 @@ function show_right_rows_and_columns(){
   } 
 }
 
-function sayWin(){
-  winner_score = 0;
-  
-  show_right_rows_and_columns();
-
-  for(var i=0; i<columns.length;i++) {
-    if(columns[i] == 0) {
-      break;
-    }
-    else winner_score++;
-  }
-
-  for(var i=0; i<rows.length;i++) {
-    if(rows[i] == 0) {
-      break;
-    }
-    else winner_score++;
-  }
-
-  if ( winner_score == 65) {
-    winner.style.display = 'block';
-  }
-  else {
-    winner.style.display = 'none';
-  }
-}
-
-function newGame(number){
-  rows = [];
-  columns = [];
-
-  for (var i=0; i<30; i++) {
-    rows.push(number);
-  }
-  for (var i=0; i<35; i++) {
-    columns.push(number);
-  }
-}
-
 function  show_result(){
   let centertbl = document.getElementById('centertable');
   let n = numbersY.length;
 
+  let allCells = document.getElementsByClassName('pic');
 
-  //newGame(1);
-
-  for(var i=0, col=0; i<n; i++, col++){
-    for(var j=1; j<numbersY[i].length; j+=2){
-      let pos = numbersY[i][j];
-      let number = numbersY[i][j-1];
-
-      for(var x=pos, item=0; item<number; x++, item++) {
-        let div = centertbl.rows[x].cells[col];  
-        div.style.backgroundColor = 'black';
-      }
+  for(var i=0; i<solution.length;i++){
+    let div = allCells[i];
+    if(solution[i] == 1) {
+      div.style.backgroundColor = 'black';
+      userGame[i] = 1;
     }
   }
-  sayWin();
+  checkResultGame();
 }
 
 function reset() {
   let maintbl = document.getElementsByClassName('pic');
-  right_rows = 0;
-  right_columns = 0;
+  //right_rows = 0;
+  //right_columns = 0;
+  userGame.fill(0);
 
   winner.style.display = 'none';
-  newGame(0);
+  //newGame(0);
 
   for(var i=0; i<maintbl.length; i++){
     maintbl[i].style.backgroundColor = 'white';

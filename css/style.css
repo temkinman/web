@@ -369,7 +369,7 @@ table {
   border-bottom: 1px solid #504847;
 }
 
-#stop_game, #reset_game, #result {
+#stop_game, #reset_game, #result, #usergame {
   display: none;
 }
 
