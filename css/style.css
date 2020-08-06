@@ -395,18 +395,17 @@ table {
 
 
 /*css_page start*/
-.parent textarea {
+.parent {
   color: #783c00;
-  background-color: lightgray;
-  font-size: 1.5em;
+  background-color: #f3e2e2;
+  font-size: 1.1em;
   padding: 19px;
   text-align: justify;
 }
 
-.child textarea {
+.child {
   background-color: #23aea3;
-  margin-left: 38px;
-  margin-right: 38px;
+  padding: 15px;
 }
 
 .nb {
@@ -884,6 +883,13 @@ input[id^="task"] {
   padding: 10px;
 }
 
+#container h2 {
+  text-align: center;
+}
+
+#container h2>b {
+  color: red;
+}
 .btn_div{
   text-align: center;
 }
@@ -953,7 +959,7 @@ hr {
   font-size: 1em;
   color: #795548;
   text-align: right;
-  float: left;
+  /*float: left;*/
 }
 
 .inputuser {
@@ -998,7 +1004,7 @@ hr {
 }
 
 input:invalid + span:after {
-  float: left;
+  /*float: left;*/
     color: red;
     font-weight: bolder;
     content: '✖'; 
