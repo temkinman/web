@@ -74,6 +74,7 @@ let btn_reset = document.getElementById('reset_game');
 let btn_stop_game = document.getElementById('stop_game');
 let btn_usergame = document.getElementById('usergame');
 let btn_show_errors = document.getElementById('errors');
+let arr_btns = document.getElementsByClassName('btn');
 
 btn_start.addEventListener('click', startGame);
 btn_result.addEventListener('click', show_result);
@@ -94,6 +95,9 @@ function startGame() {
   btn_stop_game.style.display = 'inline-block';
   btn_usergame.style.display = 'inline-block';
   btn_show_errors.style.display = 'inline-block';
+
+  removeClass();
+  btn_usergame.classList.add('select');
 
   winner_score = 0;
   
@@ -118,6 +122,12 @@ function stopGame(){
   winner.style.display = 'none';
   btn_usergame.style.display = 'none';
   btn_show_errors.style.display = 'none';
+}
+
+function removeClass(){
+  for(var i=1; i<arr_btns.length; i++) {
+    arr_btns[i].classList.remove('select');
+  }
 }
 
 function createTr(tr, index) {
@@ -283,9 +293,10 @@ function oncell_leftClick(e){
   checkResultGame();
 }
 
-function showUserGame(){
+function showUserGame(e){
+  removeClass();
+  arr_btns[1].classList.add('select');
   
-
   for(var i=0; i<userGame.length; i++)
   {
     let cell = allCells[i];
@@ -314,7 +325,9 @@ function checkResultGame(){
   showWinnerMessage(error);
 }
 
-function show_errors(){
+function show_errors(e){
+  removeClass();
+  e.target.classList.add('select');
   let error = false;
   for (var i=0; i<solution.length; i++) {
     if (userGame[i] == 1 ){
@@ -340,7 +353,9 @@ function showWinnerMessage(error){
   }
 }
 
-function  show_result(){
+function  show_result(e){
+  removeClass();
+  e.target.classList.add('select');
   let allCells = document.getElementsByClassName('pic');
 
   for(var i=0; i<solution.length;i++){
@@ -355,7 +370,9 @@ function  show_result(){
   checkResultGame();
 }
 
-function reset() {
+function reset(e) {
+  removeClass();
+  e.target.classList.add('select');
   let maintbl = document.getElementsByClassName('pic');
   userGame.fill(0);
 
