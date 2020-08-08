@@ -1333,9 +1333,6 @@ form>div>p>label {
     font-size: 0.8em !important;
   }
 
-  /*.columns {
-    display: block !important;
-  }*/
   .right, .left {
     width: 95% !important;
     /*float: left;*/
@@ -1343,6 +1340,12 @@ form>div>p>label {
 
   .left {
     margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 800px) {
+  .logo {
+    display: none;
   }
 }
 
